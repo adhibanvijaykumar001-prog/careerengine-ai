@@ -1,26 +1,21 @@
-# NextStep AI — Autonomous Agentic Career Path Orchestrator
-**AICTE | IBM SkillsBuild Applied AI & Machine Learning Internship Capstone Project**
-*Aligned with UN SDG 8: Decent Work and Economic Growth*
+# CareerEngine — Autonomous Career Intelligence & Regional Placement Radar
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Render-00c7b7?style=for-the-badge&logo=render&logoColor=white)](https://careerengine-ai.onrender.com)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-Web_Framework-000000?style=for-the-badge&logo=flask&logoColor=white)](https://palletsprojects.com/p/flask/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Decision_Tree-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)](https://scikit-learn.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+
+> **Live Deployment:** [https://careerengine-ai.onrender.com](https://careerengine-ai.onrender.com)  
+> **Program Evaluation:** AICTE | IBM SkillsBuild Applied AI Capstone (2026)  
+> **Target Alignment:** UN SDG 8 — Decent Work & Economic Growth  
+
+---
 
 ## 📌 Overview
-NextStep AI is an autonomous multi-agent career diagnostic platform designed to reduce underemployment by bridging the gap between student competencies and industry hiring thresholds.
 
-## 🚀 Key Features
-- **Supervised ML Classification:** Employs an entropy-optimized Decision Tree Classifier to evaluate student skill matrices.
-- **Autonomous Multi-Agent Architecture:**
-  - `Agent 1 (Profiler)`: Standardizes input competencies.
-  - `Agent 2 (ML Matcher)`: Executes role inference and confidence scoring.
-  - `Agent 3 (Diagnostic)`: Pinpoints high-impact skill gaps.
-  - `Agent 4 (Roadmap)`: Maps deficits directly to verified IBM SkillsBuild courses.
-- **Interactive Executive Lean Canvas:** Embedded live within the user interface.
+**CareerEngine** replaces subjective career advice with deterministic machine learning. It models candidate skill vectors across **12 specialized technology tracks**, isolates capability gaps, calculates dynamic **What-If Career ROI** projections, and matches candidates to verified tech hubs across **Coimbatore, Chennai, Bengaluru, Hyderabad, and Pune**.
 
-## 🛠 Tech Stack
-- **Backend:** Python, Flask, Scikit-Learn, Pandas, NumPy
-- **Frontend:** HTML5, Tailwind CSS, Chart.js
-- **Platform:** Visual Studio Code, IBM SkillsBuild Learning Ecosystem
+---
 
-## 💻 Local Setup
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/](https://github.com/)<YOUR_USERNAME>/nextstep-agentic-ai.git
-   cd nextstep-agentic-ai
+## 🛠️ Multi-Agent System Architecture
