@@ -10,8 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + JetBrains Mono -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Plus Jakarta Sans + Playfair Display + JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -23,14 +23,15 @@
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
-                        brand: {
-                            orange: '#D9531E',
-                            orangeHover: '#BF4414',
-                            dark: '#0B0C0E',
-                            surface: '#121418',
-                            card: '#16181E',
-                            cardHover: '#1E212A',
-                            border: 'rgba(255, 255, 255, 0.08)'
+                        theme: {
+                            gold: '#F3B007',          /* Golden Amber Primary */
+                            goldHover: '#D99B04',     /* Darker Golden Hover */
+                            goldLight: '#FEF3C7',     /* Light Golden Accent */
+                            bg: '#1A1C22',            /* Warm Executive Charcoal */
+                            surface: '#22252D',       /* Charcoal Section Surface */
+                            card: '#282B34',          /* Card Charcoal */
+                            cardHover: '#313540',     /* Hover Charcoal */
+                            border: 'rgba(255, 255, 255, 0.09)'
                         }
                     }
                 }
@@ -40,11 +41,11 @@
 
     <style>
         body { 
-            background-color: #0B0C0E; 
+            background-color: #1A1C22; 
             color: #E5E7EB; 
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(217, 83, 30, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 100% 60%, rgba(217, 83, 30, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 50% 0%, rgba(243, 176, 7, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 100% 50%, rgba(243, 176, 7, 0.03) 0%, transparent 40%);
             background-attachment: fixed;
         }
 
@@ -58,37 +59,38 @@
         }
 
         .role-card {
-            transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform, box-shadow;
         }
         .role-card:hover { 
             transform: translateY(-2px); 
-            border-color: rgba(217, 83, 30, 0.45);
+            border-color: rgba(243, 176, 7, 0.5);
         }
         .role-card.active {
-            background-color: #D9531E !important;
-            border-color: #D9531E !important;
-            color: #FFFFFF !important;
-            box-shadow: 0 14px 28px -8px rgba(217, 83, 30, 0.55);
+            background-color: #F3B007 !important;
+            border-color: #F3B007 !important;
+            color: #111827 !important;
+            box-shadow: 0 12px 28px -6px rgba(243, 176, 7, 0.45);
             transform: translateY(-3px);
         }
-        .role-card.active * { color: #FFFFFF !important; }
+        .role-card.active * { color: #111827 !important; }
 
         .skill-pill {
-            transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
             touch-action: manipulation;
         }
-        .skill-pill:hover { transform: translateY(-1px); }
-        .skill-pill:active { transform: scale(0.95); }
+        .skill-pill:hover { transform: translateY(-1px); border-color: rgba(243, 176, 7, 0.5); }
+        .skill-pill:active { transform: scale(0.96); }
         .skill-pill.active {
-            background-color: #D9531E;
-            color: #FFFFFF;
-            border-color: #D9531E;
-            box-shadow: 0 0 12px rgba(217, 83, 30, 0.35);
+            background-color: #F3B007;
+            color: #111827;
+            border-color: #F3B007;
+            font-weight: 700;
+            box-shadow: 0 2px 10px rgba(243, 176, 7, 0.3);
         }
 
         .modal-base {
-            transition: opacity 0.22s ease-out, visibility 0.22s ease-out;
+            transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
         }
         .modal-base.modal-hidden {
             opacity: 0;
@@ -99,154 +101,196 @@
             transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .modal-base.modal-hidden .modal-content {
-            transform: scale(0.96) translateY(10px);
+            transform: scale(0.96) translateY(8px);
             opacity: 0;
         }
 
-        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
         .custom-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.15); }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #2A2E38; border-radius: 999px; }
-        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #D9531E; }
-        
+        .custom-scroll::-webkit-scrollbar-thumb { background: #373A45; border-radius: 999px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #F3B007; }
+
         @media print {
             body { background: #FFFFFF !important; color: #000000 !important; }
-            header, #hero, #roleSelectionSection, #controlPanel, #actionButtons, #logsBox, #howItWorksModal, #resumeModal, #badgeModal { display: none !important; }
+            header, #heroSection, #specBadgesSection, #roleSelectionSection, #controlPanel, #actionButtons, #logsBox, #howItWorksModal, #resumeModal, #badgeModal { display: none !important; }
             #workspace { display: block !important; margin: 0 !important; width: 100% !important; max-width: 100% !important; }
-            .bg-brand-card { background: #FFFFFF !important; border: 1px solid #E5E7EB !important; color: #000000 !important; box-shadow: none !important; }
+            .bg-theme-card, .bg-theme-surface { background: #FFFFFF !important; border: 1px solid #E5E7EB !important; color: #000000 !important; box-shadow: none !important; }
             * { color: #111827 !important; }
-            .print-header { display: block !important; margin-bottom: 20px; border-bottom: 2px solid #D9531E; padding-bottom: 8px; }
+            .print-header { display: block !important; margin-bottom: 20px; border-bottom: 2px solid #F3B007; padding-bottom: 8px; }
         }
         .print-header { display: none; }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-brand-orange selection:text-white min-h-screen flex flex-col text-sm">
+<body class="font-sans antialiased selection:bg-theme-gold selection:text-slate-950 min-h-screen flex flex-col text-sm">
 
-    <!-- Responsive Top Navigation Bar -->
-    <header class="border-b border-white/10 bg-brand-dark/95 backdrop-blur-lg sticky top-0 z-40 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2">
+    <!-- Top Navigation Bar (Warm Charcoal + Golden Highlights) -->
+    <header class="border-b border-white/10 bg-theme-bg/95 backdrop-blur-md sticky top-0 z-40 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
             
             <!-- Logo & Brand Badge -->
-            <div class="flex items-center space-x-2.5 sm:space-x-3.5 flex-shrink-0">
-                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/20 flex items-center justify-center bg-white/[0.03]">
-                    <span class="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-brand-orange animate-pulse"></span>
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-theme-gold flex items-center justify-center shadow-md shadow-theme-gold/20">
+                    <span class="font-mono font-black text-slate-950 text-xs sm:text-sm">CE</span>
                 </div>
                 <div>
-                    <span class="font-serif font-bold text-white text-base sm:text-lg tracking-tight">Career<span class="text-brand-orange">Engine</span></span>
-                    <span class="hidden md:inline-block text-[9px] font-mono text-gray-400 ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/5">AICTE • IBM SKILLSBUILD</span>
+                    <span class="font-serif font-bold text-white text-base sm:text-lg tracking-tight">Career<span class="text-theme-gold">Engine</span></span>
+                    <span class="hidden md:inline-block text-[9px] font-mono text-gray-300 ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/10">AICTE • IBM SKILLSBUILD</span>
                 </div>
             </div>
             
-            <!-- Responsive Actions Hub -->
+            <!-- Actions Hub -->
             <div class="flex items-center space-x-1.5 sm:space-x-2.5" id="actionButtons">
                 <!-- Currency Switcher -->
-                <div class="flex items-center bg-[#121418] border border-white/10 rounded-lg p-0.5 text-[11px] font-mono">
-                    <button id="btnINR" onclick="setCurrency('INR')" class="px-2 sm:px-2.5 py-1 rounded bg-brand-orange text-white font-bold transition">₹</button>
+                <div class="flex items-center bg-theme-surface border border-white/10 rounded-lg p-0.5 text-[11px] font-mono">
+                    <button id="btnINR" onclick="setCurrency('INR')" class="px-2 sm:px-2.5 py-1 rounded bg-theme-gold text-slate-950 font-bold transition">₹</button>
                     <button id="btnUSD" onclick="setCurrency('USD')" class="px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition">$</button>
                 </div>
 
                 <!-- Placement Pass Button -->
-                <button onclick="toggleBadgeModal(true)" class="inline-flex items-center gap-1 bg-brand-orange/10 hover:bg-brand-orange/20 text-brand-orange border border-brand-orange/30 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition">
+                <button onclick="toggleBadgeModal(true)" class="inline-flex items-center gap-1 bg-theme-gold/15 hover:bg-theme-gold/25 text-theme-gold border border-theme-gold/30 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition">
                     <span class="hidden xs:inline">Pass</span>
                     <span class="font-mono text-xs">⚡</span>
                 </button>
 
-                <!-- How It Works (Hidden on smallest mobile, available in hero) -->
+                <!-- How It Works Modal Trigger -->
                 <button onclick="toggleHowItWorks(true)" class="hidden lg:inline-block bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition">
-                    How It Works
+                    Pipeline
                 </button>
 
                 <!-- Download Report Button -->
-                <button onclick="window.print()" class="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-gray-200 border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition" title="Download Report">
-                    <svg class="w-3.5 h-3.5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <button onclick="window.print()" class="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-gray-200 border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition" title="Print/Export Report">
+                    <svg class="w-3.5 h-3.5 text-theme-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     <span class="hidden md:inline">Report</span>
                 </button>
 
-                <!-- Diagnostic Studio CTA Button -->
-                <button onclick="scrollToWorkspace()" class="inline-flex items-center gap-1 sm:gap-1.5 bg-brand-orange hover:bg-brand-orangeHover text-white px-3 sm:px-4 py-1.5 rounded-lg text-xs font-semibold uppercase shadow-md shadow-brand-orange/20 transition">
+                <!-- Studio CTA Button -->
+                <button onclick="scrollToWorkspace()" class="inline-flex items-center gap-1 sm:gap-1.5 bg-theme-gold hover:bg-theme-goldHover text-slate-950 font-bold px-3 sm:px-4 py-1.5 rounded-lg text-xs uppercase shadow-md shadow-theme-gold/20 transition">
                     <span>Studio</span>
-                    <span class="font-bold text-xs">↗</span>
+                    <span class="font-black text-xs">↗</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Center-Aligned Hero Section -->
-    <section id="hero" class="relative border-b border-white/10 pt-12 sm:pt-16 pb-12 sm:pb-16 overflow-hidden text-center">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center">
-            
-            <div class="inline-flex items-center gap-2 text-[10px] font-mono font-medium uppercase tracking-widest text-brand-orange mb-4 sm:mb-5 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/20">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
-                Agentic Career Intelligence & What-If ROI
-            </div>
+    <!-- Executive Hero Section with Collaborative Workspace Photography -->
+    <section id="heroSection" class="relative border-b border-white/10 py-12 sm:py-20 overflow-hidden bg-cover bg-center" 
+             style="background-image: linear-gradient(to right, rgba(26, 28, 34, 0.94) 30%, rgba(26, 28, 34, 0.75) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80');">
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Floating Frosted Glass Card (Styled after reference image) -->
+                <div class="lg:col-span-7 bg-[#1C1E24]/85 backdrop-blur-xl border border-white/15 p-6 sm:p-10 rounded-3xl shadow-2xl">
+                    
+                    <div class="inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-theme-gold mb-3.5 px-3 py-1 rounded-full bg-theme-gold/15 border border-theme-gold/30">
+                        <span class="w-2 h-2 rounded-full bg-theme-gold animate-ping"></span>
+                        Autonomous Career Intelligence & What-If ROI
+                    </div>
 
-            <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-normal text-white tracking-tight leading-[1.15] mb-4 sm:mb-5">
-                Build a technical career that <span class="italic text-brand-orange">actually</span> works.
-            </h1>
+                    <h1 class="font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.18] mb-3">
+                        Welcome to <span class="text-theme-gold">CareerEngine</span>
+                    </h1>
 
-            <p class="text-xs sm:text-base text-gray-400 font-normal leading-relaxed mb-6 sm:mb-8 max-w-2xl mx-auto">
-                Replace guesswork with deterministic machine learning. Select your benchmark track, diagnose competencies, simulate career ROI, and export placement-ready resumes.
-            </p>
+                    <p class="text-xs sm:text-base text-gray-300 font-normal leading-relaxed mb-6 max-w-xl">
+                        Replace subjective guesswork with deterministic machine learning. Select your benchmark engineering track, diagnose competencies with Scikit-Learn, simulate career ROI, and export placement passes.
+                    </p>
 
-            <div class="flex flex-col xs:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-10 sm:mb-12">
-                <button onclick="scrollToWorkspace()" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orangeHover text-white px-5 sm:px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition shadow-lg shadow-brand-orange/20">
-                    <span>Launch Diagnostic Studio</span>
-                    <span class="font-bold text-sm">↗</span>
-                </button>
+                    <div class="flex flex-col xs:flex-row items-center gap-3">
+                        <button onclick="scrollToWorkspace()" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-theme-gold hover:bg-theme-goldHover text-slate-950 font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-theme-gold/25">
+                            <span>Launch Diagnostic Studio</span>
+                            <span class="font-black text-sm">↗</span>
+                        </button>
 
-                <button onclick="toggleResumeModal(true)" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/15 px-5 sm:px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition">
-                    <svg class="w-3.5 h-3.5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                    <span>Paste Resume / Bio</span>
-                </button>
-            </div>
+                        <button onclick="toggleResumeModal(true)" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 px-5 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition">
+                            <svg class="w-4 h-4 text-theme-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span>Paste Resume / Bio</span>
+                        </button>
+                    </div>
 
-            <!-- Balanced 3-Step Flow Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full pt-6 border-t border-white/10 text-left">
-                <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                    <span class="font-mono text-brand-orange font-bold text-xs block mb-1">01. Track Selection</span>
-                    <span class="text-xs text-gray-300 leading-snug">Choose specialization & real-time compensation tier.</span>
                 </div>
-                <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                    <span class="font-mono text-brand-orange font-bold text-xs block mb-1">02. Vector Diagnosis & ROI</span>
-                    <span class="text-xs text-gray-300 leading-snug">Tag verified skills and click deficits to simulate ROI.</span>
-                </div>
-                <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                    <span class="font-mono text-brand-orange font-bold text-xs block mb-1">03. Placement & Pass</span>
-                    <span class="text-xs text-gray-300 leading-snug">Synthesize STAR bullets, hiring hubs, & boarding pass.</span>
-                </div>
-            </div>
 
+                <!-- Right Hero Metrics Column -->
+                <div class="lg:col-span-5 hidden lg:block space-y-3.5">
+                    <div class="p-5 rounded-2xl bg-theme-surface/90 border border-white/10 backdrop-blur-md">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-theme-gold font-bold block mb-1">01. Algorithmic Core</span>
+                        <p class="text-xs text-gray-300 leading-relaxed">Entropy-pruned Decision Tree Classifier evaluates binary competency vectors to establish class probabilities.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-theme-surface/90 border border-white/10 backdrop-blur-md">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-theme-gold font-bold block mb-1">02. Dynamic Marginal ROI</span>
+                        <p class="text-xs text-gray-300 leading-relaxed">Agentic delta simulation calculates real-time projected salary increments (+₹ LPA) per deficit addressed.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-theme-surface/90 border border-white/10 backdrop-blur-md">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-theme-gold font-bold block mb-1">03. Placement Corridor Radar</span>
+                        <p class="text-xs text-gray-300 leading-relaxed">Direct correlation with active tech corridors across Coimbatore TIDEL, Chennai OMR, and Bengaluru Whitefield.</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Autonomous Multi-Agent Status Ribbon -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-6 w-full">
-        <div class="bg-[#121418] border border-white/10 rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-2.5 text-xs font-mono">
-            <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span class="text-gray-300 font-semibold text-[11px] sm:text-xs">Autonomous Multi-Agent Pipeline</span>
-            </div>
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] sm:text-[11px] text-gray-400">
-                <span><strong class="text-brand-orange">Agent 1:</strong> Profiler</span>
-                <span><strong class="text-brand-orange">Agent 2:</strong> ML Matcher</span>
-                <span><strong class="text-brand-orange">Agent 3:</strong> What-If ROI</span>
-                <span><strong class="text-brand-orange">Agent 4:</strong> Synthesizer</span>
+    <!-- 4 Circular Specification Badges (Exact Layout from Reference Image) -->
+    <section id="specBadgesSection" class="border-b border-white/10 bg-theme-surface py-8 sm:py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
+                
+                <!-- Badge 1: Career Tracks -->
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-theme-gold text-slate-950 flex items-center justify-center mb-3 shadow-lg shadow-theme-gold/20 transform hover:scale-105 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">12 Career Tracks</h3>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Benchmark Roles & Packages</p>
+                    <span class="text-[10px] font-mono text-theme-gold mt-1">₹6.5 - ₹28.0 LPA</span>
+                </div>
+
+                <!-- Badge 2: Decision Tree ML -->
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-theme-gold text-slate-950 flex items-center justify-center mb-3 shadow-lg shadow-theme-gold/20 transform hover:scale-105 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">ML Decision Tree</h3>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Entropy Information Gain</p>
+                    <span class="text-[10px] font-mono text-theme-gold mt-1">Depth = 7 Model</span>
+                </div>
+
+                <!-- Badge 3: Regional Radar -->
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-theme-gold text-slate-950 flex items-center justify-center mb-3 shadow-lg shadow-theme-gold/20 transform hover:scale-105 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">Regional Job Radar</h3>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Verified Hub Openings</p>
+                    <span class="text-[10px] font-mono text-theme-gold mt-1">Coimbatore • Chennai • BLR</span>
+                </div>
+
+                <!-- Badge 4: IBM SkillsBuild -->
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-theme-gold text-slate-950 flex items-center justify-center mb-3 shadow-lg shadow-theme-gold/20 transform hover:scale-105 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">IBM SkillsBuild</h3>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Accredited Pathways</p>
+                    <span class="text-[10px] font-mono text-theme-gold mt-1">Credly Badges Verified</span>
+                </div>
+
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Career Specialization Cards (Responsive 2-Col Mobile / 3-Col Tablet / 4-Col Desktop) -->
+    <!-- Career Specialization Cards -->
     <section id="roleSelectionSection" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full">
         <div class="flex items-center justify-between mb-3.5">
             <h2 class="font-serif text-lg sm:text-xl font-bold text-white tracking-wide">Benchmark Career Tracks</h2>
-            <span class="text-[11px] font-mono text-brand-orange hidden xs:inline">Click card to run diagnosis</span>
+            <span class="text-[11px] font-mono text-theme-gold hidden xs:inline">Select track to re-evaluate</span>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
             {% for role, data in taxonomy.items() %}
             <div onclick="selectRole('{{ role }}', this)" 
-                 class="role-card group cursor-pointer p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-brand-card border border-white/5 hover:bg-brand-cardHover flex flex-col justify-between {% if loop.first %}active{% endif %}">
+                 class="role-card group cursor-pointer p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-theme-card border border-white/5 hover:bg-theme-cardHover flex flex-col justify-between {% if loop.first %}active{% endif %}">
                 <div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[8px] sm:text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-brand-orange uppercase truncate max-w-[90px]">{{ data.demand }}</span>
+                        <span class="text-[8px] sm:text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-theme-gold uppercase truncate max-w-[90px]">{{ data.demand }}</span>
                         <span class="text-xs font-bold text-gray-400 group-hover:text-white">↗</span>
                     </div>
                     <h3 class="font-serif text-xs sm:text-sm font-bold text-white mb-1 leading-snug">{{ role }}</h3>
@@ -258,7 +302,7 @@
                 </div>
                 <div class="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-gray-400">
                     <span>{{ data.companies | length }} Hubs</span>
-                    <span class="text-emerald-400 font-semibold">Hiring</span>
+                    <span class="text-emerald-400 font-semibold">Active Hiring</span>
                 </div>
             </div>
             {% endfor %}
@@ -273,16 +317,16 @@
             <p class="text-sm text-gray-600">Generated via Decision Tree Classifier & Regional Job Radar</p>
         </div>
 
-        <!-- Master Score Card Banner (Always Prominently Visible on Desktop & Mobile) -->
-        <div class="bg-brand-card border border-white/10 p-5 sm:p-6 rounded-2xl sm:rounded-3xl relative overflow-hidden mb-6 shadow-xl" id="scoreCardBox">
+        <!-- Master Score Card Banner (Prominent Header) -->
+        <div class="bg-theme-card border border-white/10 p-5 sm:p-6 rounded-2xl sm:rounded-3xl relative overflow-hidden mb-6 shadow-xl" id="scoreCardBox">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-5 relative z-10">
                 <div class="flex-1 text-center sm:text-left">
-                    <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-orange uppercase tracking-wider mb-1">
+                    <div class="inline-flex items-center gap-2 text-xs font-mono text-theme-gold uppercase tracking-wider mb-1">
                         <span>Candidate Evaluation</span>
-                        <span class="px-2 py-0.5 rounded text-[10px] bg-brand-orange/20 text-brand-orange font-mono" id="readinessTier">Developing</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] bg-theme-gold/20 text-theme-gold font-mono font-bold" id="readinessTier">Developing</span>
                     </div>
                     <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mt-0.5" id="activeRoleTitle">AI / Machine Learning Engineer</h2>
-                    <p class="text-xs text-gray-400 mt-1.5 leading-relaxed max-w-2xl" id="modelSummary">
+                    <p class="text-xs text-gray-300 mt-1.5 leading-relaxed max-w-2xl" id="modelSummary">
                         Running Decision Tree classification...
                     </p>
                     <div class="mt-2.5 flex items-center justify-center sm:justify-start gap-2 text-xs font-mono">
@@ -306,11 +350,11 @@
             <div class="lg:col-span-5 space-y-5" id="controlPanel">
                 
                 <!-- Competency Matrix -->
-                <div class="bg-brand-card border border-white/10 p-4 sm:p-5 rounded-2xl shadow-lg">
+                <div class="bg-theme-card border border-white/10 p-4 sm:p-5 rounded-2xl shadow-lg">
                     <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
                         <div class="flex items-center gap-2">
                             <span class="font-serif text-sm sm:text-base font-bold text-white">Competency Matrix</span>
-                            <button onclick="toggleResumeModal(true)" class="text-[10px] font-mono text-brand-orange bg-brand-orange/10 hover:bg-brand-orange/20 border border-brand-orange/30 px-2 py-0.5 rounded transition">
+                            <button onclick="toggleResumeModal(true)" class="text-[10px] font-mono text-theme-gold bg-theme-gold/15 hover:bg-theme-gold/25 border border-theme-gold/30 px-2 py-0.5 rounded font-bold transition">
                                 📋 Parse
                             </button>
                         </div>
@@ -321,16 +365,16 @@
                     <div class="relative mb-2.5">
                         <input type="text" id="skillSearch" placeholder="Filter skills (Python, RTOS, SQL)..." 
                                oninput="filterSkills()" 
-                               class="w-full bg-[#101216] border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange transition">
+                               class="w-full bg-[#181A20] border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-theme-gold transition">
                     </div>
 
-                    <!-- Aligned Interactive Skill Pills -->
+                    <!-- Interactive Skill Pills -->
                     <div class="flex flex-wrap gap-1.5 max-h-64 sm:max-h-72 overflow-y-auto pr-1 custom-scroll" id="skillsMatrix">
                         {% for skill in skills %}
                         <button type="button" 
                                 data-skill="{{ skill }}"
                                 onclick="toggleSkill(this, '{{ skill }}')" 
-                                class="skill-pill text-[11px] sm:text-xs px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-gray-300 font-medium cursor-pointer hover:border-brand-orange/50 {% if skill in ['Python', 'Git / GitHub'] %}active{% endif %}">
+                                class="skill-pill text-[11px] sm:text-xs px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-gray-300 font-medium cursor-pointer hover:border-theme-gold/50 {% if skill in ['Python', 'Git / GitHub'] %}active{% endif %}">
                             {{ skill }}
                         </button>
                         {% endfor %}
@@ -345,14 +389,14 @@
                         </button>
                     </div>
 
-                    <button onclick="runAnalysis()" class="w-full mt-2.5 py-3 px-4 rounded-lg bg-brand-orange hover:bg-brand-orangeHover text-white font-semibold text-xs tracking-wider uppercase shadow-md shadow-brand-orange/20 flex items-center justify-center gap-2 transition">
+                    <button onclick="runAnalysis()" class="w-full mt-2.5 py-3 px-4 rounded-lg bg-theme-gold hover:bg-theme-goldHover text-slate-950 font-bold text-xs tracking-wider uppercase shadow-md shadow-theme-gold/20 flex items-center justify-center gap-2 transition">
                         <span>Recalculate Readiness Vector</span>
-                        <span class="font-bold">↗</span>
+                        <span class="font-black text-sm">↗</span>
                     </button>
                 </div>
 
                 <!-- Recruiter STAR Bullets -->
-                <div class="bg-brand-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-theme-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <span class="font-serif text-sm font-bold text-white flex items-center gap-1.5">
                             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
@@ -366,10 +410,10 @@
                 </div>
 
                 <!-- Core Interview Topics -->
-                <div class="bg-brand-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-theme-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <span class="font-serif text-sm font-bold text-white flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
+                            <span class="w-2 h-2 rounded-full bg-theme-gold"></span>
                             Core Technical Interview Topics
                         </span>
                         <span class="text-[9px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded">High Yield</span>
@@ -380,10 +424,10 @@
                 </div>
 
                 <!-- Verified Project Seal & Watermark -->
-                <div class="p-4 sm:p-5 rounded-2xl border border-white/10 bg-gradient-to-br from-[#121418] to-[#181B22] relative overflow-hidden shadow-lg">
+                <div class="p-4 sm:p-5 rounded-2xl border border-white/10 bg-gradient-to-br from-[#22252D] to-[#1C1E24] relative overflow-hidden shadow-lg">
                     <div class="flex items-center justify-between pb-2.5 border-b border-white/5 mb-2.5">
                         <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 rounded bg-brand-orange/20 border border-brand-orange/40 flex items-center justify-center text-brand-orange font-bold text-xs">
+                            <div class="w-5 h-5 rounded bg-theme-gold/20 border border-theme-gold/40 flex items-center justify-center text-theme-gold font-bold text-xs">
                                 ✓
                             </div>
                             <span class="font-serif font-bold text-white text-xs">Verified Capstone Project</span>
@@ -398,7 +442,7 @@
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-gray-400">Track:</span>
-                            <span class="text-brand-orange font-mono text-[11px]">IBM SkillsBuild Applied AI</span>
+                            <span class="text-theme-gold font-mono text-[11px] font-bold">IBM SkillsBuild Applied AI</span>
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-gray-400">Target SDG:</span>
@@ -412,7 +456,7 @@
                 </div>
 
                 <!-- Telemetry Console -->
-                <div class="bg-brand-card border border-white/10 p-4 rounded-2xl" id="logsBox">
+                <div class="bg-theme-card border border-white/10 p-4 rounded-2xl" id="logsBox">
                     <div class="text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-2 flex items-center justify-between">
                         <span>Agent Telemetry</span>
                         <span class="text-emerald-400 text-[9px] font-mono">Live</span>
@@ -431,10 +475,10 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     
                     <!-- Missing Deficits with Hover ROI Simulator -->
-                    <div class="bg-brand-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                    <div class="bg-theme-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                         <div class="flex items-center justify-between mb-1">
                             <span class="font-serif text-sm font-bold text-rose-300">Missing Deficits</span>
-                            <span id="gapCount" class="text-[10px] font-mono text-brand-orange">0 Gaps</span>
+                            <span id="gapCount" class="text-[10px] font-mono text-theme-gold font-bold">0 Gaps</span>
                         </div>
                         <p class="text-[11px] text-gray-400 mb-2.5">Click tag to simulate ROI bump:</p>
                         <div id="missingList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
@@ -443,10 +487,10 @@
                     </div>
 
                     <!-- Verified Competencies -->
-                    <div class="bg-brand-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                    <div class="bg-theme-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                         <div class="flex items-center justify-between mb-1">
                             <span class="font-serif text-sm font-bold text-emerald-400">Verified Competencies</span>
-                            <span id="matchCount" class="text-[10px] font-mono text-emerald-400">0 Matches</span>
+                            <span id="matchCount" class="text-[10px] font-mono text-emerald-400 font-bold">0 Matches</span>
                         </div>
                         <p class="text-[11px] text-gray-400 mb-2.5">Active skills factored in vector:</p>
                         <div id="matchedList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
@@ -456,7 +500,7 @@
                 </div>
 
                 <!-- Regional Placement Matcher with City Search -->
-                <div class="bg-brand-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-theme-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
                         <div>
                             <h3 class="font-serif text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
@@ -470,8 +514,8 @@
                         <div class="flex items-center gap-1.5">
                             <input type="text" id="citySearchInput" placeholder="Enter city (e.g. Coimbatore)..." 
                                    onkeydown="if(event.key === 'Enter') runCitySearch()"
-                                   class="bg-[#101216] border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange w-36 sm:w-44 font-mono">
-                            <button onclick="runCitySearch()" class="px-3 py-1.5 rounded-lg bg-brand-orange hover:bg-brand-orangeHover text-white text-xs font-mono font-bold transition">
+                                   class="bg-[#181A20] border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-theme-gold w-36 sm:w-44 font-mono">
+                            <button onclick="runCitySearch()" class="px-3 py-1.5 rounded-lg bg-theme-gold hover:bg-theme-goldHover text-slate-950 font-bold text-xs font-mono transition">
                                 Find
                             </button>
                             <button onclick="resetCityFilter()" class="px-2 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 text-xs font-mono transition">
@@ -483,11 +527,11 @@
                     <!-- Quick City Pills -->
                     <div class="flex items-center gap-1.5 mb-2.5 text-[10px] sm:text-[11px] font-mono overflow-x-auto pb-1 custom-scroll">
                         <span class="text-gray-500">Quick:</span>
-                        <button onclick="setCityFilter('Coimbatore')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-orange/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Coimbatore</button>
-                        <button onclick="setCityFilter('Chennai')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-orange/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Chennai</button>
-                        <button onclick="setCityFilter('Bengaluru')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-orange/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Bengaluru</button>
-                        <button onclick="setCityFilter('Hyderabad')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-orange/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Hyderabad</button>
-                        <button onclick="setCityFilter('Pune')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-orange/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Pune</button>
+                        <button onclick="setCityFilter('Coimbatore')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-theme-gold/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Coimbatore</button>
+                        <button onclick="setCityFilter('Chennai')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-theme-gold/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Chennai</button>
+                        <button onclick="setCityFilter('Bengaluru')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-theme-gold/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Bengaluru</button>
+                        <button onclick="setCityFilter('Hyderabad')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-theme-gold/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Hyderabad</button>
+                        <button onclick="setCityFilter('Pune')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-theme-gold/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Pune</button>
                     </div>
 
                     <div id="companyContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-2.5">
@@ -496,13 +540,13 @@
                 </div>
 
                 <!-- Recommended Upskilling Curriculum Pathway -->
-                <div class="bg-brand-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-theme-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <div>
                             <h3 class="font-serif text-sm sm:text-base font-bold text-white">Curated IBM SkillsBuild Pathway</h3>
                             <p class="text-xs text-gray-400 mt-0.5">Click any course below to open and start on IBM SkillsBuild:</p>
                         </div>
-                        <span class="text-[10px] font-mono text-brand-orange bg-brand-orange/10 px-2 py-0.5 rounded">Direct Link</span>
+                        <span class="text-[10px] font-mono text-theme-gold bg-theme-gold/15 px-2 py-0.5 rounded font-bold">Direct Link</span>
                     </div>
                     <div id="roadmapList" class="space-y-2.5">
                         <div class="text-xs text-gray-500">Loading modules...</div>
@@ -515,7 +559,7 @@
 
     <!-- MODAL 1: Resume Text Ingestion -->
     <div id="resumeModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="modal-content bg-[#121418] border border-white/10 rounded-2xl max-w-xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
+        <div class="modal-content bg-theme-surface border border-white/10 rounded-2xl max-w-xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
             <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
                 <div>
                     <h3 class="font-serif text-base sm:text-lg font-bold text-white">Resume & Bio Quick Ingestion</h3>
@@ -525,7 +569,7 @@
             </div>
 
             <textarea id="resumeInput" rows="5" placeholder="Paste your resume text or project summary here... (e.g., Developed deep learning neural networks in Python using PyTorch and Docker for real-time edge devices)" 
-                      class="w-full bg-[#101216] border border-white/10 rounded-xl p-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange custom-scroll font-mono"></textarea>
+                      class="w-full bg-[#181A20] border border-white/10 rounded-xl p-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-theme-gold custom-scroll font-mono"></textarea>
 
             <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-3.5">
                 <button onclick="loadSampleResume()" class="text-xs font-mono text-gray-400 hover:text-white transition">
@@ -535,7 +579,7 @@
                     <button onclick="toggleResumeModal(false)" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 text-xs font-semibold transition">
                         Cancel
                     </button>
-                    <button onclick="parsePastedResume()" class="px-4 py-1.5 rounded-lg bg-brand-orange hover:bg-brand-orangeHover text-white text-xs font-semibold uppercase tracking-wide transition shadow-md shadow-brand-orange/20">
+                    <button onclick="parsePastedResume()" class="px-4 py-1.5 rounded-lg bg-theme-gold hover:bg-theme-goldHover text-slate-950 font-bold text-xs uppercase tracking-wide transition shadow-md shadow-theme-gold/20">
                         Extract Skills ↗
                     </button>
                 </div>
@@ -546,11 +590,11 @@
     <!-- MODAL 2: Placement Readiness Boarding Pass -->
     <div id="badgeModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
         <div class="modal-content bg-transparent max-w-lg w-full">
-            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#161922] to-[#0E1015] border border-white/15 relative overflow-hidden shadow-2xl">
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#282B34] to-[#1C1E24] border border-white/15 relative overflow-hidden shadow-2xl">
                 
                 <div class="flex items-center justify-between pb-3.5 border-b border-white/10 mb-4">
                     <div class="flex items-center gap-2">
-                        <span class="w-7 h-7 rounded-lg bg-brand-orange/20 border border-brand-orange/40 flex items-center justify-center text-brand-orange font-bold text-xs">
+                        <span class="w-7 h-7 rounded-lg bg-theme-gold flex items-center justify-center text-slate-950 font-black text-xs">
                             CE
                         </span>
                         <div>
@@ -570,7 +614,7 @@
                     <div class="p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
                         <span class="text-gray-400 text-[9px] block uppercase">Readiness Tier</span>
                         <span id="badgeTierText" class="text-emerald-400 font-bold text-xs sm:text-sm block mt-0.5">Placement Ready</span>
-                        <span id="badgeScoreText" class="text-[9px] text-brand-orange">Fit Score: 85%</span>
+                        <span id="badgeScoreText" class="text-[9px] text-theme-gold font-bold">Fit Score: 85%</span>
                     </div>
                 </div>
 
@@ -589,9 +633,9 @@
                 <div class="pt-3 border-t border-dashed border-white/15 flex items-center justify-between">
                     <div>
                         <div class="font-mono text-[8px] tracking-widest text-gray-500 uppercase">Authenticated by Multi-Agent Engine</div>
-                        <div class="font-mono text-[10px] tracking-widest text-brand-orange mt-0.5">||||| |||| || |||||| ||||| |||</div>
+                        <div class="font-mono text-[10px] tracking-widest text-theme-gold mt-0.5">||||| |||| || |||||| ||||| |||</div>
                     </div>
-                    <button onclick="window.print()" class="px-3.5 py-1.5 rounded-xl bg-brand-orange hover:bg-brand-orangeHover text-white text-xs font-semibold uppercase tracking-wider transition shadow-md shadow-brand-orange/20">
+                    <button onclick="window.print()" class="px-3.5 py-1.5 rounded-xl bg-theme-gold hover:bg-theme-goldHover text-slate-950 font-bold text-xs uppercase tracking-wider transition shadow-md shadow-theme-gold/20">
                         Print Pass
                     </button>
                 </div>
@@ -602,7 +646,7 @@
 
     <!-- MODAL 3: How It Works & Architecture -->
     <div id="howItWorksModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="modal-content bg-[#121418] border border-white/10 rounded-2xl max-w-2xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
+        <div class="modal-content bg-theme-surface border border-white/10 rounded-2xl max-w-2xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
             <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
                 <div>
                     <h3 class="text-base sm:text-lg font-serif font-bold text-white">How CareerEngine Works</h3>
@@ -613,7 +657,7 @@
             
             <div class="space-y-3 text-xs text-gray-300">
                 <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
-                    <h4 class="font-serif font-bold text-brand-orange text-xs sm:text-sm mb-1">1. Skill Ingestion & Vectorization</h4>
+                    <h4 class="font-serif font-bold text-theme-gold text-xs sm:text-sm mb-1">1. Skill Ingestion & Vectorization</h4>
                     <p class="leading-relaxed">When you select technologies or paste your resume, Agent 1 normalizes them into a multi-dimensional binary feature vector representing your capabilities.</p>
                 </div>
                 <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
@@ -628,7 +672,7 @@
         </div>
     </div>
 
-    <!-- Frontend Interactive Logic -->
+    <!-- Frontend Interactive Logic (Unchanged and Fully Preserved) -->
     <script>
         let currentTargetRole = "AI / Machine Learning Engineer";
         let selectedSkills = ['Python', 'Git / GitHub'];
@@ -651,10 +695,10 @@
             const btnUSD = document.getElementById('btnUSD');
 
             if (curr === 'INR') {
-                btnINR.className = "px-2 sm:px-2.5 py-1 rounded bg-brand-orange text-white font-bold transition";
+                btnINR.className = "px-2 sm:px-2.5 py-1 rounded bg-theme-gold text-slate-950 font-bold transition";
                 btnUSD.className = "px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition";
             } else {
-                btnUSD.className = "px-2 sm:px-2.5 py-1 rounded bg-brand-orange text-white font-bold transition";
+                btnUSD.className = "px-2 sm:px-2.5 py-1 rounded bg-theme-gold text-slate-950 font-bold transition";
                 btnINR.className = "px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition";
             }
 
@@ -809,7 +853,7 @@
                 data: {
                     datasets: [{
                         data: [score, 100 - score],
-                        backgroundColor: ['#D9531E', '#1C1F26'],
+                        backgroundColor: ['#F3B007', '#343844'],
                         borderWidth: 0,
                     }]
                 },
@@ -860,14 +904,14 @@
                 if (data.match_percentage >= 75) {
                     tierText = "Placement Ready";
                     tierEl.textContent = tierText;
-                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-mono transition";
+                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-mono font-bold transition";
                 } else if (data.match_percentage >= 40) {
                     tierText = "Mid-Stage Candidate";
                     tierEl.textContent = tierText;
-                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-400 font-mono transition";
+                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-theme-gold font-mono font-bold transition";
                 } else {
                     tierEl.textContent = tierText;
-                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-brand-orange/20 text-brand-orange font-mono transition";
+                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-theme-gold/20 text-theme-gold font-mono font-bold transition";
                 }
 
                 // Update Boarding Pass Data
@@ -885,15 +929,15 @@
                     gapContainer.innerHTML = data.missing_skills.map((s, idx) => {
                         const roi = data.skill_roi[s] || { fit_gain: 15, salary_bump: "+₹2.4 LPA", openings_unlocked: 4 };
                         return `
-                        <div onclick="simulateSkillAcquisition('${s}')" class="group cursor-pointer p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-200 transition hover:bg-rose-500/20 hover:border-brand-orange/50" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
+                        <div onclick="simulateSkillAcquisition('${s}')" class="group cursor-pointer p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-200 transition hover:bg-rose-500/20 hover:border-theme-gold/50" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
                             <div class="flex items-center justify-between">
                                 <span class="font-medium text-[11px] sm:text-xs">❌ ${s}</span>
-                                <span class="text-[9px] font-mono text-brand-orange bg-brand-orange/10 px-1.5 py-0.5 rounded border border-brand-orange/20">Simulate ↗</span>
+                                <span class="text-[9px] font-mono text-theme-gold bg-theme-gold/15 px-1.5 py-0.5 rounded border border-theme-gold/30 font-bold">Simulate ↗</span>
                             </div>
-                            <div class="mt-1.5 pt-1.5 border-t border-rose-500/20 flex items-center justify-between text-[10px] font-mono text-gray-400">
+                            <div class="mt-1.5 pt-1.5 border-t border-rose-500/20 flex items-center justify-between text-[10px] font-mono text-gray-300">
                                 <span class="text-emerald-400 font-bold">+${roi.fit_gain}% Fit</span>
                                 <span>+${roi.openings_unlocked} Hubs</span>
-                                <span class="text-brand-orange font-bold">${roi.salary_bump}</span>
+                                <span class="text-theme-gold font-bold">${roi.salary_bump}</span>
                             </div>
                         </div>
                         `;
@@ -920,10 +964,10 @@
                 const starContainer = document.getElementById('starBulletsList');
                 if (data.star_bullets && data.star_bullets.length > 0) {
                     starContainer.innerHTML = data.star_bullets.map((b, idx) => `
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-orange/40 transition group">
+                        <div class="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-theme-gold/40 transition group">
                             <div class="flex items-start justify-between gap-2">
                                 <span class="text-[11px] leading-relaxed text-gray-300 font-sans">${b}</span>
-                                <button onclick="copyToClipboard('${b.replace(/'/g, "\\'")}')" class="text-[10px] font-mono text-gray-500 group-hover:text-brand-orange p-1 rounded hover:bg-white/5 transition flex-shrink-0" title="Copy bullet">
+                                <button onclick="copyToClipboard('${b.replace(/'/g, "\\'")}')" class="text-[10px] font-mono text-gray-400 group-hover:text-theme-gold p-1 rounded hover:bg-white/5 transition flex-shrink-0" title="Copy bullet">
                                     Copy 📋
                                 </button>
                             </div>
@@ -935,13 +979,13 @@
                 const compContainer = document.getElementById('companyContainer');
                 if (data.companies.length > 0) {
                     compContainer.innerHTML = data.companies.map((c, idx) => `
-                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-orange/40 transition flex items-center justify-between" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.04}s forwards; opacity: 0;">
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-theme-gold/40 transition flex items-center justify-between" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.04}s forwards; opacity: 0;">
                             <div>
                                 <div class="text-xs font-bold text-white">${c.name}</div>
                                 <div class="text-[10px] sm:text-[11px] text-gray-400 mt-0.5 font-mono">📍 ${c.city} (${c.hub}) • ${c.type}</div>
                             </div>
                             <div class="text-right flex-shrink-0 ml-2">
-                                <span class="text-[9px] sm:text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">${c.openings} Openings</span>
+                                <span class="text-[9px] sm:text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded font-bold">${c.openings} Openings</span>
                             </div>
                         </div>
                     `).join('');
@@ -953,20 +997,20 @@
                 const roadmapContainer = document.getElementById('roadmapList');
                 roadmapContainer.innerHTML = data.recommended_courses.map((c, i) => `
                     <a href="${c.url}" target="_blank" rel="noopener noreferrer" 
-                       class="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between hover:border-brand-orange/60 hover:bg-white/[0.04] transition group cursor-pointer block" style="animation: subtleFadeUp 0.3s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s forwards; opacity: 0;">
+                       class="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between hover:border-theme-gold/60 hover:bg-white/[0.04] transition group cursor-pointer block" style="animation: subtleFadeUp 0.3s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s forwards; opacity: 0;">
                         <div class="flex items-center gap-3">
-                            <span class="w-6 h-6 rounded-full bg-white/5 group-hover:bg-brand-orange group-hover:text-white text-brand-orange text-xs font-mono font-bold flex items-center justify-center transition-colors">0${i+1}</span>
+                            <span class="w-6 h-6 rounded-full bg-theme-gold/20 group-hover:bg-theme-gold group-hover:text-slate-950 text-theme-gold text-xs font-mono font-bold flex items-center justify-center transition-colors">0${i+1}</span>
                             <div>
-                                <div class="text-xs font-bold text-white group-hover:text-brand-orange transition-colors flex items-center gap-1">
+                                <div class="text-xs font-bold text-white group-hover:text-theme-gold transition-colors flex items-center gap-1">
                                     <span>${c.title}</span>
-                                    <span class="text-gray-400 group-hover:text-brand-orange text-xs font-bold">↗</span>
+                                    <span class="text-gray-400 group-hover:text-theme-gold text-xs font-bold">↗</span>
                                 </div>
                                 <div class="text-[10px] text-gray-400 font-mono mt-0.5">🏅 ${c.badge}</div>
                             </div>
                         </div>
                         <div class="flex items-center gap-2 flex-shrink-0 ml-2">
                             <span class="text-[10px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded">${c.duration}</span>
-                            <span class="text-[9px] font-mono text-brand-orange border border-brand-orange/30 px-2 py-0.5 rounded uppercase hidden xs:inline-block group-hover:bg-brand-orange group-hover:text-white transition">Start ↗</span>
+                            <span class="text-[9px] font-mono text-theme-gold border border-theme-gold/40 px-2 py-0.5 rounded uppercase hidden xs:inline-block group-hover:bg-theme-gold group-hover:text-slate-950 font-bold transition">Start ↗</span>
                         </div>
                     </a>
                 `).join('');
@@ -976,7 +1020,7 @@
                 if (data.interview_topics && data.interview_topics.length > 0) {
                     interviewContainer.innerHTML = data.interview_topics.map((q, idx) => `
                         <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5 flex items-start gap-2 text-gray-300" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
-                            <span class="text-brand-orange font-mono font-bold text-xs">Q${idx+1}:</span>
+                            <span class="text-theme-gold font-mono font-bold text-xs">Q${idx+1}:</span>
                             <span class="text-[11px] leading-relaxed text-gray-300">${q}</span>
                         </div>
                     `).join('');
@@ -987,7 +1031,7 @@
                 // 9. Logs
                 const logContainer = document.getElementById('logs');
                 logContainer.innerHTML = data.logs.map(l => `
-                    <div class="border-l-2 border-brand-orange pl-2 py-0.5 fade-in-element">
+                    <div class="border-l-2 border-theme-gold pl-2 py-0.5 fade-in-element">
                         <span class="text-gray-200 font-semibold">${l.agent}</span><br>
                         <span class="text-gray-400 text-[9px]">${l.detail}</span>
                     </div>
