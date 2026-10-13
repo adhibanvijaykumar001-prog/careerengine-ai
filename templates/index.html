@@ -23,19 +23,14 @@
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
-                        carbon: {
-                            base: '#0B0F19',
-                            surface: '#111827',
-                            card: '#161F30',
-                            cardHover: '#1D283E',
+                        studio: {
+                            bg: '#08080A',
+                            surface: '#0F0F13',
+                            card: '#141418',
+                            cardHover: '#1B1B22',
+                            pill: '#1A1A20',
                             border: 'rgba(255, 255, 255, 0.08)',
-                            borderLight: '#24314A'
-                        },
-                        cobalt: {
-                            500: '#3B82F6',
-                            600: '#2563EB',
-                            700: '#1D4ED8',
-                            light: '#EFF6FF'
+                            borderHover: 'rgba(255, 255, 255, 0.25)'
                         }
                     }
                 }
@@ -45,11 +40,11 @@
 
     <style>
         body { 
-            background-color: #0B0F19; 
-            color: #E2E8F0; 
+            background-color: #08080A; 
+            color: #E4E4E7; 
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 100% 60%, rgba(59, 130, 246, 0.03) 0%, transparent 40%);
+                radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+                radial-gradient(circle at 100% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
             background-attachment: fixed;
         }
 
@@ -63,19 +58,19 @@
         }
 
         .role-card {
-            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform, box-shadow;
         }
         .role-card:hover { 
             transform: translateY(-2px); 
-            border-color: rgba(59, 130, 246, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         .role-card.active {
-            background: linear-gradient(135deg, #1E3A8A 0%, #172554 100%) !important;
-            border-color: #3B82F6 !important;
+            background-color: #1F1F26 !important;
+            border-color: #FFFFFF !important;
             color: #FFFFFF !important;
-            box-shadow: 0 12px 28px -6px rgba(37, 99, 235, 0.4);
-            transform: translateY(-3px);
+            box-shadow: 0 10px 30px -8px rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
         }
         .role-card.active * { color: #FFFFFF !important; }
 
@@ -83,14 +78,14 @@
             transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
             touch-action: manipulation;
         }
-        .skill-pill:hover { transform: translateY(-1px); border-color: rgba(59, 130, 246, 0.45); }
+        .skill-pill:hover { transform: translateY(-1px); border-color: rgba(255, 255, 255, 0.4); }
         .skill-pill:active { transform: scale(0.96); }
         .skill-pill.active {
-            background-color: #2563EB;
-            color: #FFFFFF;
-            border-color: #3B82F6;
-            font-weight: 600;
-            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+            background-color: #FFFFFF !important;
+            color: #08080A !important;
+            border-color: #FFFFFF !important;
+            font-weight: 700 !important;
+            box-shadow: 0 2px 12px rgba(255, 255, 255, 0.25);
         }
 
         .modal-base {
@@ -110,65 +105,65 @@
         }
 
         .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
-        .custom-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 999px; }
-        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #3B82F6; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.25); }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #27272A; border-radius: 999px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #52525B; }
 
         @media print {
             body { background: #FFFFFF !important; color: #000000 !important; }
             header, #heroSection, #specBadgesSection, #roleSelectionSection, #controlPanel, #actionButtons, #logsBox, #howItWorksModal, #resumeModal, #badgeModal { display: none !important; }
             #workspace { display: block !important; margin: 0 !important; width: 100% !important; max-width: 100% !important; }
-            .bg-carbon-card, .bg-carbon-surface { background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; color: #000000 !important; box-shadow: none !important; }
-            * { color: #0F172A !important; }
-            .print-header { display: block !important; margin-bottom: 20px; border-bottom: 2px solid #2563EB; padding-bottom: 8px; }
+            .bg-studio-card, .bg-studio-surface { background: #FFFFFF !important; border: 1px solid #E4E4E7 !important; color: #000000 !important; box-shadow: none !important; }
+            * { color: #09090B !important; }
+            .print-header { display: block !important; margin-bottom: 20px; border-bottom: 2px solid #09090B; padding-bottom: 8px; }
         }
         .print-header { display: none; }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-cobalt-500 selection:text-white min-h-screen flex flex-col text-sm">
+<body class="font-sans antialiased selection:bg-white selection:text-black min-h-screen flex flex-col text-sm">
 
-    <!-- Top Navigation Bar -->
-    <header class="border-b border-white/10 bg-carbon-base/90 backdrop-blur-md sticky top-0 z-40 transition-all">
+    <!-- Top Navigation Bar (Sleek Studio Glass) -->
+    <header class="border-b border-white/10 bg-studio-bg/90 backdrop-blur-md sticky top-0 z-40 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
             
             <!-- Logo & Brand Badge -->
             <div class="flex items-center space-x-3 flex-shrink-0">
-                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-cobalt-600 flex items-center justify-center shadow-lg shadow-cobalt-600/30">
-                    <span class="font-mono font-bold text-white text-xs sm:text-sm">CE</span>
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white flex items-center justify-center shadow-lg shadow-white/10">
+                    <span class="font-mono font-black text-black text-xs sm:text-sm">CE</span>
                 </div>
                 <div>
-                    <span class="font-serif font-bold text-white text-base sm:text-lg tracking-tight">Career<span class="text-cobalt-500">Engine</span></span>
-                    <span class="hidden md:inline-block text-[9px] font-mono text-gray-400 ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/10">AICTE • IBM SKILLSBUILD</span>
+                    <span class="font-serif font-bold text-white text-base sm:text-lg tracking-tight">Career<span class="text-zinc-400 font-normal">Engine</span></span>
+                    <span class="hidden md:inline-block text-[9px] font-mono text-zinc-400 ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/10">AICTE • IBM SKILLSBUILD</span>
                 </div>
             </div>
             
             <!-- Actions Hub -->
             <div class="flex items-center space-x-1.5 sm:space-x-2.5" id="actionButtons">
                 <!-- Currency Switcher -->
-                <div class="flex items-center bg-carbon-surface border border-white/10 rounded-lg p-0.5 text-[11px] font-mono">
-                    <button id="btnINR" onclick="setCurrency('INR')" class="px-2 sm:px-2.5 py-1 rounded bg-cobalt-600 text-white font-bold transition">₹</button>
-                    <button id="btnUSD" onclick="setCurrency('USD')" class="px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition">$</button>
+                <div class="flex items-center bg-studio-surface border border-white/10 rounded-lg p-0.5 text-[11px] font-mono">
+                    <button id="btnINR" onclick="setCurrency('INR')" class="px-2.5 py-1 rounded bg-white text-black font-bold transition">₹</button>
+                    <button id="btnUSD" onclick="setCurrency('USD')" class="px-2.5 py-1 rounded text-zinc-400 hover:text-white transition">$</button>
                 </div>
 
                 <!-- Placement Pass Button -->
-                <button onclick="toggleBadgeModal(true)" class="inline-flex items-center gap-1 bg-cobalt-500/10 hover:bg-cobalt-500/20 text-cobalt-500 border border-cobalt-500/30 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition">
+                <button onclick="toggleBadgeModal(true)" class="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-white border border-white/15 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition">
                     <span class="hidden xs:inline">Pass</span>
                     <span class="font-mono text-xs">⚡</span>
                 </button>
 
                 <!-- Pipeline Modal Trigger -->
-                <button onclick="toggleHowItWorks(true)" class="hidden lg:inline-block bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition">
+                <button onclick="toggleHowItWorks(true)" class="hidden lg:inline-block bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition">
                     Pipeline
                 </button>
 
                 <!-- Download Report Button -->
-                <button onclick="window.print()" class="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-gray-200 border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition" title="Print/Export Report">
-                    <svg class="w-3.5 h-3.5 text-cobalt-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <button onclick="window.print()" class="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-zinc-300 border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition" title="Print/Export Report">
+                    <svg class="w-3.5 h-3.5 text-zinc-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     <span class="hidden md:inline">Report</span>
                 </button>
 
                 <!-- Studio CTA Button -->
-                <button onclick="scrollToWorkspace()" class="inline-flex items-center gap-1 sm:gap-1.5 bg-cobalt-600 hover:bg-cobalt-700 text-white font-bold px-3 sm:px-4 py-1.5 rounded-lg text-xs uppercase shadow-md shadow-cobalt-600/30 transition">
+                <button onclick="scrollToWorkspace()" class="inline-flex items-center gap-1 sm:gap-1.5 bg-white hover:bg-zinc-200 text-black font-bold px-3 sm:px-4 py-1.5 rounded-lg text-xs uppercase shadow-md shadow-white/10 transition">
                     <span>Studio</span>
                     <span class="font-black text-xs">↗</span>
                 </button>
@@ -176,37 +171,37 @@
         </div>
     </header>
 
-    <!-- Executive Hero Section with Focused Photography -->
+    <!-- Executive Hero Section with High-Resolution Architecture Studio Photography -->
     <section id="heroSection" class="relative border-b border-white/10 py-12 sm:py-20 overflow-hidden bg-cover bg-center" 
-             style="background-image: linear-gradient(to right, rgba(11, 15, 25, 0.95) 25%, rgba(11, 15, 25, 0.8) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80');">
+             style="background-image: linear-gradient(to right, rgba(8, 8, 10, 0.96) 28%, rgba(8, 8, 10, 0.82) 100%), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80');">
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
-                <!-- Floating Executive Glass Card -->
-                <div class="lg:col-span-7 bg-carbon-surface/90 backdrop-blur-xl border border-white/10 p-6 sm:p-10 rounded-3xl shadow-2xl">
+                <!-- Floating Glass Card (Studio Titanium Minimal) -->
+                <div class="lg:col-span-7 bg-studio-surface/90 backdrop-blur-xl border border-white/10 p-6 sm:p-10 rounded-3xl shadow-2xl">
                     
-                    <div class="inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-cobalt-500 mb-3.5 px-3 py-1 rounded-full bg-cobalt-500/10 border border-cobalt-500/25">
-                        <span class="w-2 h-2 rounded-full bg-cobalt-500 animate-ping"></span>
+                    <div class="inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-300 mb-3.5 px-3 py-1 rounded-full bg-white/5 border border-white/15">
+                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
                         Autonomous Career Intelligence & What-If ROI
                     </div>
 
                     <h1 class="font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.18] mb-3">
-                        Welcome to <span class="text-cobalt-500">CareerEngine</span>
+                        Welcome to CareerEngine.
                     </h1>
 
-                    <p class="text-xs sm:text-base text-gray-300 font-normal leading-relaxed mb-6 max-w-xl">
+                    <p class="text-xs sm:text-base text-zinc-400 font-normal leading-relaxed mb-6 max-w-xl">
                         Replace subjective guesswork with deterministic machine learning. Select your benchmark engineering track, diagnose competencies with Scikit-Learn, simulate career ROI, and export placement passes.
                     </p>
 
                     <div class="flex flex-col xs:flex-row items-center gap-3">
-                        <button onclick="scrollToWorkspace()" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-cobalt-600 hover:bg-cobalt-700 text-white font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-cobalt-600/30">
+                        <button onclick="scrollToWorkspace()" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-zinc-200 text-black font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-white/10">
                             <span>Launch Diagnostic Studio</span>
                             <span class="font-black text-sm">↗</span>
                         </button>
 
-                        <button onclick="toggleResumeModal(true)" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/15 px-5 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition">
-                            <svg class="w-4 h-4 text-cobalt-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        <button onclick="toggleResumeModal(true)" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/15 px-5 py-3.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition">
+                            <svg class="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             <span>Paste Resume / Bio</span>
                         </button>
                     </div>
@@ -215,17 +210,17 @@
 
                 <!-- Right Hero Metrics Column -->
                 <div class="lg:col-span-5 hidden lg:block space-y-3.5">
-                    <div class="p-5 rounded-2xl bg-carbon-surface/85 border border-white/10 backdrop-blur-md hover:border-cobalt-500/30 transition">
-                        <span class="text-[10px] font-mono uppercase tracking-wider text-cobalt-500 font-bold block mb-1">01. Algorithmic Core</span>
-                        <p class="text-xs text-gray-300 leading-relaxed">Entropy-pruned Decision Tree Classifier evaluates binary competency vectors to establish class probabilities.</p>
+                    <div class="p-5 rounded-2xl bg-studio-surface/85 border border-white/10 backdrop-blur-md hover:border-white/20 transition">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-white font-bold block mb-1">01. Algorithmic Core</span>
+                        <p class="text-xs text-zinc-400 leading-relaxed">Entropy-pruned Decision Tree Classifier evaluates binary competency vectors to establish class probabilities.</p>
                     </div>
-                    <div class="p-5 rounded-2xl bg-carbon-surface/85 border border-white/10 backdrop-blur-md hover:border-emerald-500/30 transition">
+                    <div class="p-5 rounded-2xl bg-studio-surface/85 border border-white/10 backdrop-blur-md hover:border-white/20 transition">
                         <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-bold block mb-1">02. Dynamic Marginal ROI</span>
-                        <p class="text-xs text-gray-300 leading-relaxed">Agentic delta simulation calculates real-time projected salary increments (+₹ LPA) per deficit addressed.</p>
+                        <p class="text-xs text-zinc-400 leading-relaxed">Agentic delta simulation calculates real-time projected salary increments (+₹ LPA) per deficit addressed.</p>
                     </div>
-                    <div class="p-5 rounded-2xl bg-carbon-surface/85 border border-white/10 backdrop-blur-md hover:border-amber-500/30 transition">
-                        <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold block mb-1">03. Placement Corridor Radar</span>
-                        <p class="text-xs text-gray-300 leading-relaxed">Direct correlation with active tech corridors across Coimbatore TIDEL, Chennai OMR, and Bengaluru Whitefield.</p>
+                    <div class="p-5 rounded-2xl bg-studio-surface/85 border border-white/10 backdrop-blur-md hover:border-white/20 transition">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-200 font-bold block mb-1">03. Placement Corridor Radar</span>
+                        <p class="text-xs text-zinc-400 leading-relaxed">Direct correlation with active tech corridors across Coimbatore TIDEL, Chennai OMR, and Bengaluru Whitefield.</p>
                     </div>
                 </div>
 
@@ -233,78 +228,78 @@
         </div>
     </section>
 
-    <!-- 4 Circular Specification Badges -->
-    <section id="specBadgesSection" class="border-b border-white/10 bg-carbon-surface/60 py-8 sm:py-10">
+    <!-- 4 Circular Specification Badges (Monochrome Crisp) -->
+    <section id="specBadgesSection" class="border-b border-white/10 bg-studio-surface/70 py-8 sm:py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
                 
                 <!-- Badge 1: Career Tracks -->
                 <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-carbon-card border border-cobalt-500/30 text-cobalt-500 flex items-center justify-center mb-3 shadow-lg shadow-cobalt-500/10 transform hover:scale-105 transition">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-studio-card border border-white/15 text-white flex items-center justify-center mb-3 shadow-lg shadow-black/40 transform hover:scale-105 transition">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                     </div>
                     <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">12 Career Tracks</h3>
-                    <p class="text-[11px] text-gray-400 mt-0.5">Benchmark Roles & Packages</p>
-                    <span class="text-[10px] font-mono text-cobalt-500 font-bold mt-1">₹6.5 - ₹28.0 LPA</span>
+                    <p class="text-[11px] text-zinc-400 mt-0.5">Benchmark Roles & Packages</p>
+                    <span class="text-[10px] font-mono text-zinc-200 font-bold mt-1">₹6.5 - ₹28.0 LPA</span>
                 </div>
 
                 <!-- Badge 2: Decision Tree ML -->
                 <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-carbon-card border border-cobalt-500/30 text-cobalt-500 flex items-center justify-center mb-3 shadow-lg shadow-cobalt-500/10 transform hover:scale-105 transition">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-studio-card border border-white/15 text-white flex items-center justify-center mb-3 shadow-lg shadow-black/40 transform hover:scale-105 transition">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
                     </div>
                     <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">ML Decision Tree</h3>
-                    <p class="text-[11px] text-gray-400 mt-0.5">Entropy Information Gain</p>
-                    <span class="text-[10px] font-mono text-cobalt-500 font-bold mt-1">Depth = 7 Model</span>
+                    <p class="text-[11px] text-zinc-400 mt-0.5">Entropy Information Gain</p>
+                    <span class="text-[10px] font-mono text-zinc-200 font-bold mt-1">Depth = 7 Model</span>
                 </div>
 
                 <!-- Badge 3: Regional Radar -->
                 <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-carbon-card border border-cobalt-500/30 text-cobalt-500 flex items-center justify-center mb-3 shadow-lg shadow-cobalt-500/10 transform hover:scale-105 transition">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-studio-card border border-white/15 text-white flex items-center justify-center mb-3 shadow-lg shadow-black/40 transform hover:scale-105 transition">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </div>
                     <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">Regional Job Radar</h3>
-                    <p class="text-[11px] text-gray-400 mt-0.5">Verified Hub Openings</p>
+                    <p class="text-[11px] text-zinc-400 mt-0.5">Verified Hub Openings</p>
                     <span class="text-[10px] font-mono text-emerald-400 font-bold mt-1">Coimbatore • Chennai • BLR</span>
                 </div>
 
                 <!-- Badge 4: IBM SkillsBuild -->
                 <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-carbon-card border border-cobalt-500/30 text-cobalt-500 flex items-center justify-center mb-3 shadow-lg shadow-cobalt-500/10 transform hover:scale-105 transition">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-studio-card border border-white/15 text-white flex items-center justify-center mb-3 shadow-lg shadow-black/40 transform hover:scale-105 transition">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"/></svg>
                     </div>
                     <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">IBM SkillsBuild</h3>
-                    <p class="text-[11px] text-gray-400 mt-0.5">Accredited Pathways</p>
-                    <span class="text-[10px] font-mono text-amber-400 font-bold mt-1">Credly Badges Verified</span>
+                    <p class="text-[11px] text-zinc-400 mt-0.5">Accredited Pathways</p>
+                    <span class="text-[10px] font-mono text-zinc-200 font-bold mt-1">Credly Badges Verified</span>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Career Specialization Cards -->
+    <!-- Career Specialization Cards (Clean Crisp Zinc Cards) -->
     <section id="roleSelectionSection" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full">
         <div class="flex items-center justify-between mb-3.5">
             <h2 class="font-serif text-lg sm:text-xl font-bold text-white tracking-wide">Benchmark Career Tracks</h2>
-            <span class="text-[11px] font-mono text-cobalt-500 hidden xs:inline">Select track to re-evaluate</span>
+            <span class="text-[11px] font-mono text-zinc-400 hidden xs:inline">Select track to re-evaluate</span>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
             {% for role, data in taxonomy.items() %}
             <div onclick="selectRole('{{ role }}', this)" 
-                 class="role-card group cursor-pointer p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-carbon-card border border-white/5 hover:bg-carbon-cardHover flex flex-col justify-between {% if loop.first %}active{% endif %}">
+                 class="role-card group cursor-pointer p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-studio-card border border-white/5 hover:bg-studio-cardHover flex flex-col justify-between {% if loop.first %}active{% endif %}">
                 <div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[8px] sm:text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-cobalt-500 uppercase truncate max-w-[95px]">{{ data.demand }}</span>
-                        <span class="text-xs font-bold text-gray-400 group-hover:text-cobalt-500">↗</span>
+                        <span class="text-[8px] sm:text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-300 uppercase truncate max-w-[95px]">{{ data.demand }}</span>
+                        <span class="text-xs font-bold text-zinc-500 group-hover:text-white">↗</span>
                     </div>
                     <h3 class="font-serif text-xs sm:text-sm font-bold text-white mb-1 leading-snug">{{ role }}</h3>
-                    <div class="text-[11px] sm:text-xs font-mono font-bold text-amber-400 salary-tag" 
+                    <div class="text-[11px] sm:text-xs font-mono font-bold text-zinc-200 salary-tag" 
                          data-inr="{{ data.salary_inr }}" 
                          data-usd="{{ data.salary_usd }}">
                         {{ data.salary_inr }}
                     </div>
                 </div>
-                <div class="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-gray-400">
+                <div class="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-zinc-400">
                     <span>{{ data.companies | length }} Hubs</span>
                     <span class="text-emerald-400 font-semibold">Active Hiring</span>
                 </div>
@@ -321,29 +316,29 @@
             <p class="text-sm text-gray-600">Generated via Decision Tree Classifier & Regional Job Radar</p>
         </div>
 
-        <!-- Master Score Card Banner -->
-        <div class="bg-carbon-card border border-cobalt-500/30 p-5 sm:p-6 rounded-2xl sm:rounded-3xl relative overflow-hidden mb-6 shadow-2xl bg-cover bg-center"
-             style="background-image: linear-gradient(to right, rgba(22, 31, 48, 0.96) 28%, rgba(22, 31, 48, 0.82) 100%), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');">
+        <!-- Master Score Card Banner (Crisp Monochrome Architecture Overlay) -->
+        <div class="bg-studio-card border border-white/15 p-5 sm:p-6 rounded-2xl sm:rounded-3xl relative overflow-hidden mb-6 shadow-2xl bg-cover bg-center"
+             style="background-image: linear-gradient(to right, rgba(15, 15, 19, 0.97) 25%, rgba(15, 15, 19, 0.85) 100%), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80');">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-5 relative z-10">
                 <div class="flex-1 text-center sm:text-left">
-                    <div class="inline-flex items-center gap-2 text-xs font-mono text-cobalt-500 uppercase tracking-wider mb-1">
+                    <div class="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
                         <span>Candidate Evaluation</span>
-                        <span class="px-2 py-0.5 rounded text-[10px] bg-cobalt-500/20 text-cobalt-500 font-mono font-bold" id="readinessTier">Developing</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] bg-white/10 text-white font-mono font-bold" id="readinessTier">Developing</span>
                     </div>
                     <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mt-0.5" id="activeRoleTitle">AI / Machine Learning Engineer</h2>
-                    <p class="text-xs text-gray-300 mt-1.5 leading-relaxed max-w-2xl" id="modelSummary">
+                    <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed max-w-2xl" id="modelSummary">
                         Running Decision Tree classification...
                     </p>
                     <div class="mt-2.5 flex items-center justify-center sm:justify-start gap-2 text-xs font-mono">
-                        <span class="text-gray-400">Benchmark Index:</span>
-                        <span class="text-amber-400 font-bold" id="displaySalary">₹8.5 - ₹18.0 LPA</span>
+                        <span class="text-zinc-400">Benchmark Index:</span>
+                        <span class="text-white font-bold" id="displaySalary">₹8.5 - ₹18.0 LPA</span>
                     </div>
                 </div>
                 <div class="w-28 h-28 sm:w-32 sm:h-32 relative flex-shrink-0">
                     <canvas id="gaugeChart"></canvas>
                     <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                         <span class="text-xl sm:text-2xl font-extrabold text-white font-mono" id="scorePercent">--%</span>
-                        <span class="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest font-mono">Match</span>
+                        <span class="text-[8px] sm:text-[9px] text-zinc-400 uppercase tracking-widest font-mono">Match</span>
                     </div>
                 </div>
             </div>
@@ -355,22 +350,22 @@
             <div class="lg:col-span-5 space-y-5" id="controlPanel">
                 
                 <!-- Competency Matrix -->
-                <div class="bg-carbon-card border border-white/10 p-4 sm:p-5 rounded-2xl shadow-lg">
+                <div class="bg-studio-card border border-white/10 p-4 sm:p-5 rounded-2xl shadow-lg">
                     <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
                         <div class="flex items-center gap-2">
                             <span class="font-serif text-sm sm:text-base font-bold text-white">Competency Matrix</span>
-                            <button onclick="toggleResumeModal(true)" class="text-[10px] font-mono text-cobalt-500 bg-cobalt-500/15 hover:bg-cobalt-500/25 border border-cobalt-500/30 px-2 py-0.5 rounded font-bold transition">
+                            <button onclick="toggleResumeModal(true)" class="text-[10px] font-mono text-white bg-white/10 hover:bg-white/20 border border-white/20 px-2 py-0.5 rounded font-bold transition">
                                 📋 Parse
                             </button>
                         </div>
-                        <span id="skillCount" class="text-xs font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded">2 verified</span>
+                        <span id="skillCount" class="text-xs font-mono text-zinc-400 bg-white/5 px-2 py-0.5 rounded">2 verified</span>
                     </div>
 
                     <!-- Search Filter -->
                     <div class="relative mb-2.5">
                         <input type="text" id="skillSearch" placeholder="Filter skills (Python, RTOS, SQL)..." 
                                oninput="filterSkills()" 
-                               class="w-full bg-carbon-surface border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-cobalt-500 transition font-mono">
+                               class="w-full bg-studio-surface border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white transition font-mono">
                     </div>
 
                     <!-- Interactive Skill Pills -->
@@ -379,29 +374,29 @@
                         <button type="button" 
                                 data-skill="{{ skill }}"
                                 onclick="toggleSkill(this, '{{ skill }}')" 
-                                class="skill-pill text-[11px] sm:text-xs px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-gray-300 font-medium cursor-pointer hover:border-cobalt-500/50 {% if skill in ['Python', 'Git / GitHub'] %}active{% endif %}">
+                                class="skill-pill text-[11px] sm:text-xs px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-zinc-300 font-medium cursor-pointer hover:border-white/30 {% if skill in ['Python', 'Git / GitHub'] %}active{% endif %}">
                             {{ skill }}
                         </button>
                         {% endfor %}
                     </div>
 
                     <div class="flex items-center gap-2.5 mt-4">
-                        <button onclick="quickSelectAll()" class="flex-1 py-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-gray-300 transition">
+                        <button onclick="quickSelectAll()" class="flex-1 py-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-zinc-300 transition">
                             Target Defaults
                         </button>
-                        <button onclick="clearAllSkills()" class="py-2 px-3 rounded-lg bg-white/5 hover:bg-rose-500/20 hover:text-rose-300 border border-white/10 text-xs font-semibold text-gray-400 transition">
+                        <button onclick="clearAllSkills()" class="py-2 px-3 rounded-lg bg-white/5 hover:bg-rose-500/20 hover:text-rose-300 border border-white/10 text-xs font-semibold text-zinc-400 transition">
                             Reset
                         </button>
                     </div>
 
-                    <button onclick="runAnalysis()" class="w-full mt-2.5 py-3 px-4 rounded-lg bg-cobalt-600 hover:bg-cobalt-700 text-white font-bold text-xs tracking-wider uppercase shadow-md shadow-cobalt-600/30 flex items-center justify-center gap-2 transition">
+                    <button onclick="runAnalysis()" class="w-full mt-2.5 py-3 px-4 rounded-lg bg-white hover:bg-zinc-200 text-black font-bold text-xs tracking-wider uppercase shadow-md shadow-white/10 flex items-center justify-center gap-2 transition">
                         <span>Recalculate Readiness Vector</span>
                         <span class="font-black text-sm">↗</span>
                     </button>
                 </div>
 
                 <!-- Recruiter STAR Bullets -->
-                <div class="bg-carbon-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-studio-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <span class="font-serif text-sm font-bold text-white flex items-center gap-1.5">
                             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
@@ -410,30 +405,30 @@
                         <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Resume Ready</span>
                     </div>
                     <div id="starBulletsList" class="space-y-2 text-xs">
-                        <div class="text-gray-500">Generating metric-driven resume bullets...</div>
+                        <div class="text-zinc-500">Generating metric-driven resume bullets...</div>
                     </div>
                 </div>
 
                 <!-- Core Interview Topics -->
-                <div class="bg-carbon-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-studio-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <span class="font-serif text-sm font-bold text-white flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-cobalt-500"></span>
+                            <span class="w-2 h-2 rounded-full bg-white"></span>
                             Core Technical Interview Topics
                         </span>
-                        <span class="text-[9px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded">High Yield</span>
+                        <span class="text-[9px] font-mono text-zinc-400 bg-white/5 px-2 py-0.5 rounded">High Yield</span>
                     </div>
                     <div id="interviewQuestionsList" class="space-y-2 text-xs">
-                        <div class="text-gray-500">Loading interview checklist...</div>
+                        <div class="text-zinc-500">Loading interview checklist...</div>
                     </div>
                 </div>
 
-                <!-- Verified Project Seal & Watermark -->
+                <!-- Verified Project Seal & Watermark with Architectural Monochrome Image -->
                 <div class="p-4 sm:p-5 rounded-2xl border border-white/10 bg-cover bg-center relative overflow-hidden shadow-lg"
-                     style="background-image: linear-gradient(to bottom, rgba(22, 31, 48, 0.95), rgba(11, 15, 25, 0.97)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80');">
+                     style="background-image: linear-gradient(to bottom, rgba(15, 15, 19, 0.95), rgba(8, 8, 10, 0.97)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80');">
                     <div class="flex items-center justify-between pb-2.5 border-b border-white/10 mb-2.5">
                         <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 rounded bg-cobalt-500/20 border border-cobalt-500/40 flex items-center justify-center text-cobalt-500 font-bold text-xs">
+                            <div class="w-5 h-5 rounded bg-white text-black flex items-center justify-center font-bold text-xs">
                                 ✓
                             </div>
                             <span class="font-serif font-bold text-white text-xs">Verified Capstone Project</span>
@@ -443,32 +438,32 @@
 
                     <div class="space-y-1.5 text-xs">
                         <div class="flex items-center justify-between">
-                            <span class="text-gray-400">Lead Engineer:</span>
+                            <span class="text-zinc-400">Lead Engineer:</span>
                             <span class="text-white font-semibold font-mono">Adhiban Vijayakumar</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-gray-400">Track:</span>
-                            <span class="text-cobalt-500 font-mono text-[11px] font-bold">IBM SkillsBuild Applied AI</span>
+                            <span class="text-zinc-400">Track:</span>
+                            <span class="text-zinc-200 font-mono text-[11px] font-bold">IBM SkillsBuild Applied AI</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-gray-400">Target SDG:</span>
-                            <span class="text-gray-300 font-mono text-[11px]">SDG 8: Decent Work & Growth</span>
+                            <span class="text-zinc-400">Target SDG:</span>
+                            <span class="text-zinc-300 font-mono text-[11px]">SDG 8: Decent Work & Growth</span>
                         </div>
                         <div class="flex items-center justify-between pt-1.5 border-t border-white/5">
-                            <span class="text-gray-500 text-[10px] font-mono">Build ID:</span>
-                            <span class="text-gray-500 text-[10px] font-mono">#IBM-AICTE-CAPSTONE-2026</span>
+                            <span class="text-zinc-500 text-[10px] font-mono">Build ID:</span>
+                            <span class="text-zinc-500 text-[10px] font-mono">#IBM-AICTE-CAPSTONE-2026</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Telemetry Console -->
-                <div class="bg-carbon-card border border-white/10 p-4 rounded-2xl" id="logsBox">
-                    <div class="text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-2 flex items-center justify-between">
+                <div class="bg-studio-card border border-white/10 p-4 rounded-2xl" id="logsBox">
+                    <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-2 flex items-center justify-between">
                         <span>Agent Telemetry</span>
                         <span class="text-emerald-400 text-[9px] font-mono">Live</span>
                     </div>
-                    <div id="logs" class="space-y-1.5 font-mono text-[10px] text-gray-400 max-h-24 overflow-y-auto custom-scroll">
-                        <div class="text-gray-500">[System]: Engine ready.</div>
+                    <div id="logs" class="space-y-1.5 font-mono text-[10px] text-zinc-400 max-h-24 overflow-y-auto custom-scroll">
+                        <div class="text-zinc-500">[System]: Engine ready.</div>
                     </div>
                 </div>
 
@@ -481,50 +476,50 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     
                     <!-- Missing Deficits with Hover ROI Simulator -->
-                    <div class="bg-carbon-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                    <div class="bg-studio-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                         <div class="flex items-center justify-between mb-1">
                             <span class="font-serif text-sm font-bold text-rose-300">Missing Deficits</span>
                             <span id="gapCount" class="text-[10px] font-mono text-rose-400 font-bold">0 Gaps</span>
                         </div>
-                        <p class="text-[11px] text-gray-400 mb-2.5">Click tag to simulate ROI bump:</p>
+                        <p class="text-[11px] text-zinc-400 mb-2.5">Click tag to simulate ROI bump:</p>
                         <div id="missingList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
-                            <div class="text-xs text-gray-500">None detected.</div>
+                            <div class="text-xs text-zinc-500">None detected.</div>
                         </div>
                     </div>
 
                     <!-- Verified Competencies -->
-                    <div class="bg-carbon-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                    <div class="bg-studio-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                         <div class="flex items-center justify-between mb-1">
                             <span class="font-serif text-sm font-bold text-emerald-400">Verified Competencies</span>
                             <span id="matchCount" class="text-[10px] font-mono text-emerald-400 font-bold">0 Matches</span>
                         </div>
-                        <p class="text-[11px] text-gray-400 mb-2.5">Active skills factored in vector:</p>
+                        <p class="text-[11px] text-zinc-400 mb-2.5">Active skills factored in vector:</p>
                         <div id="matchedList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
-                            <div class="text-xs text-gray-500">No overlapping skills.</div>
+                            <div class="text-xs text-zinc-500">No overlapping skills.</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Regional Placement Matcher with City Search -->
-                <div class="bg-carbon-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-studio-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
                         <div>
                             <h3 class="font-serif text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                                 Regional Company Placement Matchmaker
                             </h3>
-                            <p class="text-xs text-gray-400 mt-0.5">Filter tech hubs & vacancies by city:</p>
+                            <p class="text-xs text-zinc-400 mt-0.5">Filter tech hubs & vacancies by city:</p>
                         </div>
                         
                         <!-- City Search Field -->
                         <div class="flex items-center gap-1.5">
                             <input type="text" id="citySearchInput" placeholder="Enter city (e.g. Coimbatore)..." 
                                    onkeydown="if(event.key === 'Enter') runCitySearch()"
-                                   class="bg-carbon-surface border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-cobalt-500 w-36 sm:w-44 font-mono">
-                            <button onclick="runCitySearch()" class="px-3 py-1.5 rounded-lg bg-cobalt-600 hover:bg-cobalt-700 text-white font-bold text-xs font-mono transition">
+                                   class="bg-studio-surface border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white w-36 sm:w-44 font-mono">
+                            <button onclick="runCitySearch()" class="px-3 py-1.5 rounded-lg bg-white hover:bg-zinc-200 text-black font-bold text-xs font-mono transition">
                                 Find
                             </button>
-                            <button onclick="resetCityFilter()" class="px-2 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 text-xs font-mono transition">
+                            <button onclick="resetCityFilter()" class="px-2 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 text-xs font-mono transition">
                                 All
                             </button>
                         </div>
@@ -532,30 +527,30 @@
 
                     <!-- Quick City Pills -->
                     <div class="flex items-center gap-1.5 mb-2.5 text-[10px] sm:text-[11px] font-mono overflow-x-auto pb-1 custom-scroll">
-                        <span class="text-gray-500">Quick:</span>
-                        <button onclick="setCityFilter('Coimbatore')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-cobalt-500/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Coimbatore</button>
-                        <button onclick="setCityFilter('Chennai')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-cobalt-500/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Chennai</button>
-                        <button onclick="setCityFilter('Bengaluru')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-cobalt-500/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Bengaluru</button>
-                        <button onclick="setCityFilter('Hyderabad')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-cobalt-500/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Hyderabad</button>
-                        <button onclick="setCityFilter('Pune')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-cobalt-500/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Pune</button>
+                        <span class="text-zinc-500">Quick:</span>
+                        <button onclick="setCityFilter('Coimbatore')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white border border-white/5 transition flex-shrink-0">Coimbatore</button>
+                        <button onclick="setCityFilter('Chennai')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white border border-white/5 transition flex-shrink-0">Chennai</button>
+                        <button onclick="setCityFilter('Bengaluru')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white border border-white/5 transition flex-shrink-0">Bengaluru</button>
+                        <button onclick="setCityFilter('Hyderabad')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white border border-white/5 transition flex-shrink-0">Hyderabad</button>
+                        <button onclick="setCityFilter('Pune')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white border border-white/5 transition flex-shrink-0">Pune</button>
                     </div>
 
                     <div id="companyContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-2.5">
-                        <div class="text-xs text-gray-500">Loading verified openings...</div>
+                        <div class="text-xs text-zinc-500">Loading verified openings...</div>
                     </div>
                 </div>
 
                 <!-- Recommended Upskilling Curriculum Pathway -->
-                <div class="bg-carbon-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-studio-card border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <div>
                             <h3 class="font-serif text-sm sm:text-base font-bold text-white">Curated IBM SkillsBuild Pathway</h3>
-                            <p class="text-xs text-gray-400 mt-0.5">Click any course below to open and start on IBM SkillsBuild:</p>
+                            <p class="text-xs text-zinc-400 mt-0.5">Click any course below to open and start on IBM SkillsBuild:</p>
                         </div>
-                        <span class="text-[10px] font-mono text-cobalt-500 bg-cobalt-500/15 px-2 py-0.5 rounded font-bold border border-cobalt-500/30">Direct Link</span>
+                        <span class="text-[10px] font-mono text-white bg-white/10 px-2 py-0.5 rounded font-bold border border-white/20">Direct Link</span>
                     </div>
                     <div id="roadmapList" class="space-y-2.5">
-                        <div class="text-xs text-gray-500">Loading modules...</div>
+                        <div class="text-xs text-zinc-500">Loading modules...</div>
                     </div>
                 </div>
 
@@ -565,27 +560,27 @@
 
     <!-- MODAL 1: Resume Text Ingestion -->
     <div id="resumeModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="modal-content bg-carbon-surface border border-white/15 rounded-2xl max-w-xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
+        <div class="modal-content bg-studio-surface border border-white/15 rounded-2xl max-w-xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
             <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
                 <div>
                     <h3 class="font-serif text-base sm:text-lg font-bold text-white">Resume & Bio Quick Ingestion</h3>
-                    <p class="text-xs text-gray-400 mt-0.5">Paste your LinkedIn summary or project bullets to auto-select skills</p>
+                    <p class="text-xs text-zinc-400 mt-0.5">Paste your LinkedIn summary or project bullets to auto-select skills</p>
                 </div>
-                <button onclick="toggleResumeModal(false)" class="text-gray-400 hover:text-white text-xl font-bold p-1 rounded hover:bg-white/5 transition">&times;</button>
+                <button onclick="toggleResumeModal(false)" class="text-zinc-400 hover:text-white text-xl font-bold p-1 rounded hover:bg-white/5 transition">&times;</button>
             </div>
 
             <textarea id="resumeInput" rows="5" placeholder="Paste your resume text or project summary here... (e.g., Developed deep learning neural networks in Python using PyTorch and Docker for real-time edge devices)" 
-                      class="w-full bg-carbon-base border border-white/10 rounded-xl p-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-cobalt-500 custom-scroll font-mono"></textarea>
+                      class="w-full bg-studio-bg border border-white/10 rounded-xl p-3 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white custom-scroll font-mono"></textarea>
 
             <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-3.5">
-                <button onclick="loadSampleResume()" class="text-xs font-mono text-gray-400 hover:text-white transition">
+                <button onclick="loadSampleResume()" class="text-xs font-mono text-zinc-400 hover:text-white transition">
                     ✨ Load Sample Engineering Bio
                 </button>
                 <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-                    <button onclick="toggleResumeModal(false)" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 text-xs font-semibold transition">
+                    <button onclick="toggleResumeModal(false)" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 text-xs font-semibold transition">
                         Cancel
                     </button>
-                    <button onclick="parsePastedResume()" class="px-4 py-1.5 rounded-lg bg-cobalt-600 hover:bg-cobalt-700 text-white font-bold text-xs uppercase tracking-wide transition shadow-md shadow-cobalt-600/30">
+                    <button onclick="parsePastedResume()" class="px-4 py-1.5 rounded-lg bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-wide transition shadow-md shadow-white/10">
                         Extract Skills ↗
                     </button>
                 </div>
@@ -596,52 +591,52 @@
     <!-- MODAL 2: Placement Readiness Boarding Pass -->
     <div id="badgeModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
         <div class="modal-content bg-transparent max-w-lg w-full">
-            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-carbon-card to-carbon-base border border-white/15 relative overflow-hidden shadow-2xl">
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-studio-card to-studio-bg border border-white/15 relative overflow-hidden shadow-2xl">
                 
                 <div class="flex items-center justify-between pb-3.5 border-b border-white/10 mb-4">
                     <div class="flex items-center gap-2">
-                        <span class="w-7 h-7 rounded-lg bg-cobalt-600 text-white flex items-center justify-center font-bold text-xs">
+                        <span class="w-7 h-7 rounded-lg bg-white text-black flex items-center justify-center font-bold text-xs">
                             CE
                         </span>
                         <div>
                             <span class="font-serif font-bold text-white text-sm sm:text-base">Placement Readiness Pass</span>
-                            <span class="text-[9px] font-mono text-gray-400 block">AICTE • IBM SKILLSBUILD VERIFIED</span>
+                            <span class="text-[9px] font-mono text-zinc-400 block">AICTE • IBM SKILLSBUILD VERIFIED</span>
                         </div>
                     </div>
-                    <button onclick="toggleBadgeModal(false)" class="text-gray-400 hover:text-white text-xl font-bold p-1 rounded hover:bg-white/5 transition">&times;</button>
+                    <button onclick="toggleBadgeModal(false)" class="text-zinc-400 hover:text-white text-xl font-bold p-1 rounded hover:bg-white/5 transition">&times;</button>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3 text-xs font-mono mb-3.5">
                     <div class="p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
-                        <span class="text-gray-400 text-[9px] block uppercase">Candidate</span>
+                        <span class="text-zinc-400 text-[9px] block uppercase">Candidate</span>
                         <span class="text-white font-bold text-xs sm:text-sm block mt-0.5 truncate">Adhiban Vijayakumar</span>
-                        <span class="text-[9px] text-gray-500">ID: #IBM-AICTE-2026</span>
+                        <span class="text-[9px] text-zinc-500">ID: #IBM-AICTE-2026</span>
                     </div>
                     <div class="p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
-                        <span class="text-gray-400 text-[9px] block uppercase">Readiness Tier</span>
+                        <span class="text-zinc-400 text-[9px] block uppercase">Readiness Tier</span>
                         <span id="badgeTierText" class="text-emerald-400 font-bold text-xs sm:text-sm block mt-0.5">Placement Ready</span>
-                        <span id="badgeScoreText" class="text-[9px] text-cobalt-500 font-bold">Fit Score: 85%</span>
+                        <span id="badgeScoreText" class="text-[9px] text-zinc-200 font-bold">Fit Score: 85%</span>
                     </div>
                 </div>
 
                 <div class="p-2.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs mb-3.5">
-                    <span class="text-gray-400 font-mono text-[9px] block uppercase mb-0.5">Target Specialization</span>
+                    <span class="text-zinc-400 font-mono text-[9px] block uppercase mb-0.5">Target Specialization</span>
                     <span id="badgeRoleText" class="font-serif font-bold text-white text-xs sm:text-sm">AI / Machine Learning Engineer</span>
                 </div>
 
                 <div class="mb-4">
-                    <span class="text-gray-400 font-mono text-[9px] block uppercase mb-1.5">Verified Skill Vector</span>
+                    <span class="text-zinc-400 font-mono text-[9px] block uppercase mb-1.5">Verified Skill Vector</span>
                     <div id="badgeSkillsList" class="flex flex-wrap gap-1 max-h-20 overflow-y-auto custom-scroll pr-1">
-                        <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-300 border border-white/10">Python</span>
+                        <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-zinc-300 border border-white/10">Python</span>
                     </div>
                 </div>
 
                 <div class="pt-3 border-t border-dashed border-white/15 flex items-center justify-between">
                     <div>
-                        <div class="font-mono text-[8px] tracking-widest text-gray-500 uppercase">Authenticated by Multi-Agent Engine</div>
-                        <div class="font-mono text-[10px] tracking-widest text-cobalt-500 mt-0.5">||||| |||| || |||||| ||||| |||</div>
+                        <div class="font-mono text-[8px] tracking-widest text-zinc-500 uppercase">Authenticated by Multi-Agent Engine</div>
+                        <div class="font-mono text-[10px] tracking-widest text-zinc-400 mt-0.5">||||| |||| || |||||| ||||| |||</div>
                     </div>
-                    <button onclick="window.print()" class="px-3.5 py-1.5 rounded-xl bg-cobalt-600 hover:bg-cobalt-700 text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-cobalt-600/30">
+                    <button onclick="window.print()" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-wider transition shadow-md shadow-white/10">
                         Print Pass
                     </button>
                 </div>
@@ -652,27 +647,27 @@
 
     <!-- MODAL 3: How It Works & Architecture -->
     <div id="howItWorksModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="modal-content bg-carbon-surface border border-white/15 rounded-2xl max-w-2xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
+        <div class="modal-content bg-studio-surface border border-white/15 rounded-2xl max-w-2xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
             <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
                 <div>
                     <h3 class="text-base sm:text-lg font-serif font-bold text-white">How CareerEngine Works</h3>
-                    <p class="text-xs text-gray-400">Step-by-step intelligence pipeline overview</p>
+                    <p class="text-xs text-zinc-400">Step-by-step intelligence pipeline overview</p>
                 </div>
-                <button onclick="toggleHowItWorks(false)" class="text-gray-400 hover:text-white text-xl font-bold p-1 rounded hover:bg-white/5 transition">&times;</button>
+                <button onclick="toggleHowItWorks(false)" class="text-zinc-400 hover:text-white text-xl font-bold p-1 rounded hover:bg-white/5 transition">&times;</button>
             </div>
             
-            <div class="space-y-3 text-xs text-gray-300">
+            <div class="space-y-3 text-xs text-zinc-300">
                 <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
-                    <h4 class="font-serif font-bold text-cobalt-500 text-xs sm:text-sm mb-1">1. Skill Ingestion & Vectorization</h4>
-                    <p class="leading-relaxed">When you select technologies or paste your resume, Agent 1 normalizes them into a multi-dimensional binary feature vector representing your capabilities.</p>
+                    <h4 class="font-serif font-bold text-white text-xs sm:text-sm mb-1">1. Skill Ingestion & Vectorization</h4>
+                    <p class="leading-relaxed text-zinc-400">When you select technologies or paste your resume, Agent 1 normalizes them into a multi-dimensional binary feature vector representing your capabilities.</p>
                 </div>
                 <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
                     <h4 class="font-serif font-bold text-white text-xs sm:text-sm mb-1">2. Decision Tree Classification & What-If ROI</h4>
-                    <p class="leading-relaxed">A Scikit-Learn Decision Tree evaluates your vector against industrial benchmark standards, computing instant What-If career return projections for each missing competency.</p>
+                    <p class="leading-relaxed text-zinc-400">A Scikit-Learn Decision Tree evaluates your vector against industrial benchmark standards, computing instant What-If career return projections for each missing competency.</p>
                 </div>
                 <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
                     <h4 class="font-serif font-bold text-emerald-400 text-xs sm:text-sm mb-1">3. Regional Vacancy & Placement Pass</h4>
-                    <p class="leading-relaxed">Agent 3 and 4 synthesize metric-driven STAR bullets for placement resumes, link accredited IBM SkillsBuild coursework, and filter active tech centers in your target city.</p>
+                    <p class="leading-relaxed text-zinc-400">Agent 3 and 4 synthesize metric-driven STAR bullets for placement resumes, link accredited IBM SkillsBuild coursework, and filter active tech centers in your target city.</p>
                 </div>
             </div>
         </div>
@@ -701,11 +696,11 @@
             const btnUSD = document.getElementById('btnUSD');
 
             if (curr === 'INR') {
-                btnINR.className = "px-2 sm:px-2.5 py-1 rounded bg-cobalt-600 text-white font-bold transition";
-                btnUSD.className = "px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition";
+                btnINR.className = "px-2.5 py-1 rounded bg-white text-black font-bold transition";
+                btnUSD.className = "px-2.5 py-1 rounded text-zinc-400 hover:text-white transition";
             } else {
-                btnUSD.className = "px-2 sm:px-2.5 py-1 rounded bg-cobalt-600 text-white font-bold transition";
-                btnINR.className = "px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition";
+                btnUSD.className = "px-2.5 py-1 rounded bg-white text-black font-bold transition";
+                btnINR.className = "px-2.5 py-1 rounded text-zinc-400 hover:text-white transition";
             }
 
             document.querySelectorAll('.salary-tag').forEach(tag => {
@@ -859,7 +854,7 @@
                 data: {
                     datasets: [{
                         data: [score, 100 - score],
-                        backgroundColor: ['#2563EB', '#1E293B'],
+                        backgroundColor: ['#FFFFFF', '#27272A'],
                         borderWidth: 0,
                     }]
                 },
@@ -914,10 +909,10 @@
                 } else if (data.match_percentage >= 40) {
                     tierText = "Mid-Stage Candidate";
                     tierEl.textContent = tierText;
-                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-400 font-mono font-bold transition";
+                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-white/10 text-zinc-300 font-mono font-bold transition";
                 } else {
                     tierEl.textContent = tierText;
-                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-cobalt-500/20 text-cobalt-500 font-mono font-bold transition";
+                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-white/10 text-zinc-400 font-mono font-bold transition";
                 }
 
                 // Update Boarding Pass Data
@@ -925,7 +920,7 @@
                 document.getElementById('badgeTierText').textContent = tierText;
                 document.getElementById('badgeScoreText').textContent = `Fit Score: ${data.match_percentage}%`;
                 document.getElementById('badgeSkillsList').innerHTML = data.acquired_skills.map(s => `
-                    <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-300 border border-white/10">${s}</span>
+                    <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-zinc-300 border border-white/10">${s}</span>
                 `).join('');
 
                 // 3. What-If Missing Competencies
@@ -940,10 +935,10 @@
                                 <span class="font-medium text-[11px] sm:text-xs text-rose-300">❌ ${s}</span>
                                 <span class="text-[9px] font-mono text-rose-400 bg-rose-500/20 px-1.5 py-0.5 rounded border border-rose-500/30 font-bold">Simulate ↗</span>
                             </div>
-                            <div class="mt-1.5 pt-1.5 border-t border-rose-500/20 flex items-center justify-between text-[10px] font-mono text-gray-300">
+                            <div class="mt-1.5 pt-1.5 border-t border-rose-500/20 flex items-center justify-between text-[10px] font-mono text-zinc-400">
                                 <span class="text-emerald-400 font-bold">+${roi.fit_gain}% Fit</span>
                                 <span>+${roi.openings_unlocked} Hubs</span>
-                                <span class="text-amber-400 font-bold">${roi.salary_bump}</span>
+                                <span class="text-zinc-200 font-bold">${roi.salary_bump}</span>
                             </div>
                         </div>
                         `;
@@ -957,23 +952,23 @@
                 document.getElementById('matchCount').textContent = `${data.acquired_skills.length} Verified`;
                 if (data.acquired_skills.length > 0) {
                     matchContainer.innerHTML = data.acquired_skills.map((s, idx) => `
-                        <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-gray-300 flex items-center justify-between transition hover:bg-white/[0.06]" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
+                        <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-zinc-300 flex items-center justify-between transition hover:bg-white/[0.06]" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
                             <span class="text-[11px] sm:text-xs text-white">${s}</span>
                             <span class="text-emerald-400 font-mono text-[9px] font-bold">✓ Verified</span>
                         </div>
                     `).join('');
                 } else {
-                    matchContainer.innerHTML = `<div class="text-xs text-gray-500 fade-in-element">No overlapping skills selected.</div>`;
+                    matchContainer.innerHTML = `<div class="text-xs text-zinc-500 fade-in-element">No overlapping skills selected.</div>`;
                 }
 
                 // 5. STAR Bullets
                 const starContainer = document.getElementById('starBulletsList');
                 if (data.star_bullets && data.star_bullets.length > 0) {
                     starContainer.innerHTML = data.star_bullets.map((b, idx) => `
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-cobalt-500/40 transition group">
+                        <div class="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/20 transition group">
                             <div class="flex items-start justify-between gap-2">
-                                <span class="text-[11px] leading-relaxed text-gray-300 font-sans">${b}</span>
-                                <button onclick="copyToClipboard('${b.replace(/'/g, "\\'")}')" class="text-[10px] font-mono text-gray-400 group-hover:text-cobalt-500 p-1 rounded hover:bg-white/5 transition flex-shrink-0" title="Copy bullet">
+                                <span class="text-[11px] leading-relaxed text-zinc-300 font-sans">${b}</span>
+                                <button onclick="copyToClipboard('${b.replace(/'/g, "\\'")}')" class="text-[10px] font-mono text-zinc-500 group-hover:text-white p-1 rounded hover:bg-white/5 transition flex-shrink-0" title="Copy bullet">
                                     Copy 📋
                                 </button>
                             </div>
@@ -985,10 +980,10 @@
                 const compContainer = document.getElementById('companyContainer');
                 if (data.companies.length > 0) {
                     compContainer.innerHTML = data.companies.map((c, idx) => `
-                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-cobalt-500/40 transition flex items-center justify-between" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.04}s forwards; opacity: 0;">
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/20 transition flex items-center justify-between" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.04}s forwards; opacity: 0;">
                             <div>
                                 <div class="text-xs font-bold text-white">${c.name}</div>
-                                <div class="text-[10px] sm:text-[11px] text-gray-400 mt-0.5 font-mono">📍 ${c.city} (${c.hub}) • ${c.type}</div>
+                                <div class="text-[10px] sm:text-[11px] text-zinc-400 mt-0.5 font-mono">📍 ${c.city} (${c.hub}) • ${c.type}</div>
                             </div>
                             <div class="text-right flex-shrink-0 ml-2">
                                 <span class="text-[9px] sm:text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded font-bold">${c.openings} Openings</span>
@@ -996,27 +991,27 @@
                         </div>
                     `).join('');
                 } else {
-                    compContainer.innerHTML = `<div class="text-xs text-gray-500 p-2.5 fade-in-element">No active centers listed for this filter. Try 'All'.</div>`;
+                    compContainer.innerHTML = `<div class="text-xs text-zinc-500 p-2.5 fade-in-element">No active centers listed for this filter. Try 'All'.</div>`;
                 }
 
                 // 7. Recommended IBM Courses
                 const roadmapContainer = document.getElementById('roadmapList');
                 roadmapContainer.innerHTML = data.recommended_courses.map((c, i) => `
                     <a href="${c.url}" target="_blank" rel="noopener noreferrer" 
-                       class="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between hover:border-cobalt-500/60 hover:bg-white/[0.04] transition group cursor-pointer block" style="animation: subtleFadeUp 0.3s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s forwards; opacity: 0;">
+                       class="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between hover:border-white/30 hover:bg-white/[0.04] transition group cursor-pointer block" style="animation: subtleFadeUp 0.3s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s forwards; opacity: 0;">
                         <div class="flex items-center gap-3">
-                            <span class="w-6 h-6 rounded-full bg-carbon-surface border border-cobalt-500/30 group-hover:bg-cobalt-600 text-cobalt-500 group-hover:text-white text-xs font-mono font-bold flex items-center justify-center transition-colors">0${i+1}</span>
+                            <span class="w-6 h-6 rounded-full bg-studio-surface border border-white/10 group-hover:bg-white group-hover:text-black text-zinc-300 text-xs font-mono font-bold flex items-center justify-center transition-colors">0${i+1}</span>
                             <div>
-                                <div class="text-xs font-bold text-white group-hover:text-cobalt-500 transition-colors flex items-center gap-1">
+                                <div class="text-xs font-bold text-white group-hover:text-zinc-200 transition-colors flex items-center gap-1">
                                     <span>${c.title}</span>
-                                    <span class="text-gray-400 group-hover:text-cobalt-500 text-xs font-bold">↗</span>
+                                    <span class="text-zinc-500 group-hover:text-white text-xs font-bold">↗</span>
                                 </div>
-                                <div class="text-[10px] text-gray-400 font-mono mt-0.5">🏅 ${c.badge}</div>
+                                <div class="text-[10px] text-zinc-400 font-mono mt-0.5">🏅 ${c.badge}</div>
                             </div>
                         </div>
                         <div class="flex items-center gap-2 flex-shrink-0 ml-2">
-                            <span class="text-[10px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded">${c.duration}</span>
-                            <span class="text-[9px] font-mono text-cobalt-500 border border-cobalt-500/40 px-2 py-0.5 rounded uppercase hidden xs:inline-block group-hover:bg-cobalt-600 group-hover:text-white font-bold transition">Start ↗</span>
+                            <span class="text-[10px] font-mono text-zinc-400 bg-white/5 px-2 py-0.5 rounded">${c.duration}</span>
+                            <span class="text-[9px] font-mono text-zinc-300 border border-white/20 px-2 py-0.5 rounded uppercase hidden xs:inline-block group-hover:bg-white group-hover:text-black font-bold transition">Start ↗</span>
                         </div>
                     </a>
                 `).join('');
@@ -1025,21 +1020,21 @@
                 const interviewContainer = document.getElementById('interviewQuestionsList');
                 if (data.interview_topics && data.interview_topics.length > 0) {
                     interviewContainer.innerHTML = data.interview_topics.map((q, idx) => `
-                        <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5 flex items-start gap-2 text-gray-300" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
-                            <span class="text-cobalt-500 font-mono font-bold text-xs">Q${idx+1}:</span>
-                            <span class="text-[11px] leading-relaxed text-gray-300">${q}</span>
+                        <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5 flex items-start gap-2 text-zinc-300" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
+                            <span class="text-white font-mono font-bold text-xs">Q${idx+1}:</span>
+                            <span class="text-[11px] leading-relaxed text-zinc-400">${q}</span>
                         </div>
                     `).join('');
                 } else {
-                    interviewContainer.innerHTML = `<div class="text-xs text-gray-500 fade-in-element">Select a career track to view key interview topics.</div>`;
+                    interviewContainer.innerHTML = `<div class="text-xs text-zinc-500 fade-in-element">Select a career track to view key interview topics.</div>`;
                 }
 
                 // 9. Logs
                 const logContainer = document.getElementById('logs');
                 logContainer.innerHTML = data.logs.map(l => `
-                    <div class="border-l-2 border-cobalt-500 pl-2 py-0.5 fade-in-element">
-                        <span class="text-gray-200 font-semibold">${l.agent}</span><br>
-                        <span class="text-gray-400 text-[9px]">${l.detail}</span>
+                    <div class="border-l-2 border-white/40 pl-2 py-0.5 fade-in-element">
+                        <span class="text-zinc-200 font-semibold">${l.agent}</span><br>
+                        <span class="text-zinc-400 text-[9px]">${l.detail}</span>
                     </div>
                 `).join('');
 
