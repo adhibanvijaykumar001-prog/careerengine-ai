@@ -23,15 +23,18 @@
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
-                        pine: {
-                            base: '#0D1B18',          /* Deepest Forest Shadow */
-                            surface: '#132622',       /* Dark Pine Section Surface */
-                            card: '#19332D',          /* Editorial Pine Card */
-                            cardHover: '#21423B',     /* Interactive Pine Hover */
-                            accent: '#2E8B75',        /* Nordic Pine Accent */
-                            mint: '#34D399',          /* Luminous Sage / Mint Highlight */
-                            mintLight: '#D1FAE5',     /* Soft Mint Tint */
-                            border: 'rgba(52, 211, 153, 0.12)' /* Subtle Mint Border */
+                        slate950: '#0A0D14',
+                        slate900: '#0F1420',
+                        slate850: '#141925',
+                        slate800: '#1A2130',
+                        slate750: '#222B3D',
+                        brand: {
+                            cyan: '#06B6D4',
+                            cyanHover: '#0891B2',
+                            emerald: '#10B981',
+                            amber: '#F59E0B',
+                            indigo: '#6366F1',
+                            rose: '#F43F5E',
                         }
                     }
                 }
@@ -41,11 +44,11 @@
 
     <style>
         body { 
-            background-color: #0D1B18; 
+            background-color: #0A0D14; 
             color: #E2E8F0; 
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(46, 139, 117, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 100% 60%, rgba(52, 211, 153, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 100% 60%, rgba(99, 102, 241, 0.04) 0%, transparent 40%);
             background-attachment: fixed;
         }
 
@@ -64,13 +67,13 @@
         }
         .role-card:hover { 
             transform: translateY(-2px); 
-            border-color: rgba(52, 211, 153, 0.45);
+            border-color: rgba(6, 182, 212, 0.5);
         }
         .role-card.active {
-            background-color: #1F423A !important;
-            border-color: #34D399 !important;
+            background: linear-gradient(135deg, #162438 0%, #111A29 100%) !important;
+            border-color: #06B6D4 !important;
             color: #FFFFFF !important;
-            box-shadow: 0 12px 28px -6px rgba(52, 211, 153, 0.3);
+            box-shadow: 0 12px 28px -6px rgba(6, 182, 212, 0.35);
             transform: translateY(-3px);
         }
         .role-card.active * { color: #FFFFFF !important; }
@@ -79,14 +82,14 @@
             transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
             touch-action: manipulation;
         }
-        .skill-pill:hover { transform: translateY(-1px); border-color: rgba(52, 211, 153, 0.4); }
+        .skill-pill:hover { transform: translateY(-1px); border-color: rgba(6, 182, 212, 0.4); }
         .skill-pill:active { transform: scale(0.96); }
         .skill-pill.active {
-            background-color: #2E8B75;
-            color: #FFFFFF;
-            border-color: #34D399;
+            background-color: #06B6D4;
+            color: #0A0D14;
+            border-color: #06B6D4;
             font-weight: 700;
-            box-shadow: 0 2px 10px rgba(52, 211, 153, 0.25);
+            box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
         }
 
         .modal-base {
@@ -106,48 +109,48 @@
         }
 
         .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
-        .custom-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.18); }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #23473E; border-radius: 999px; }
-        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #34D399; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 999px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #06B6D4; }
 
         @media print {
             body { background: #FFFFFF !important; color: #000000 !important; }
             header, #heroSection, #specBadgesSection, #roleSelectionSection, #controlPanel, #actionButtons, #logsBox, #howItWorksModal, #resumeModal, #badgeModal { display: none !important; }
             #workspace { display: block !important; margin: 0 !important; width: 100% !important; max-width: 100% !important; }
-            .bg-pine-card, .bg-pine-surface { background: #FFFFFF !important; border: 1px solid #E5E7EB !important; color: #000000 !important; box-shadow: none !important; }
-            * { color: #111827 !important; }
-            .print-header { display: block !important; margin-bottom: 20px; border-bottom: 2px solid #2E8B75; padding-bottom: 8px; }
+            .bg-slate850, .bg-slate900 { background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; color: #000000 !important; box-shadow: none !important; }
+            * { color: #0F172A !important; }
+            .print-header { display: block !important; margin-bottom: 20px; border-bottom: 2px solid #06B6D4; padding-bottom: 8px; }
         }
         .print-header { display: none; }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-pine-mint selection:text-slate-950 min-h-screen flex flex-col text-sm">
+<body class="font-sans antialiased selection:bg-brand-cyan selection:text-slate950 min-h-screen flex flex-col text-sm">
 
-    <!-- Top Navigation Bar (Deep Nordic Pine + Luminous Mint Accents) -->
-    <header class="border-b border-white/10 bg-pine-base/95 backdrop-blur-md sticky top-0 z-40 transition-all">
+    <!-- Top Navigation Bar (Midnight Slate Glass + Cyan Brand Accent) -->
+    <header class="border-b border-white/10 bg-slate950/90 backdrop-blur-md sticky top-0 z-40 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
             
             <!-- Logo & Brand Badge -->
             <div class="flex items-center space-x-3 flex-shrink-0">
-                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-pine-surface border border-pine-mint/40 flex items-center justify-center shadow-md shadow-pine-mint/10">
-                    <span class="w-2.5 h-2.5 rounded-full bg-pine-mint animate-pulse"></span>
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-brand-cyan to-brand-indigo flex items-center justify-center shadow-lg shadow-brand-cyan/20">
+                    <span class="font-mono font-black text-slate950 text-xs sm:text-sm">CE</span>
                 </div>
                 <div>
-                    <span class="font-serif font-bold text-white text-base sm:text-lg tracking-tight">Career<span class="text-pine-mint">Engine</span></span>
-                    <span class="hidden md:inline-block text-[9px] font-mono text-gray-300 ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/10">AICTE • IBM SKILLSBUILD</span>
+                    <span class="font-serif font-bold text-white text-base sm:text-lg tracking-tight">Career<span class="text-brand-cyan">Engine</span></span>
+                    <span class="hidden md:inline-block text-[9px] font-mono text-gray-400 ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/10">AICTE • IBM SKILLSBUILD</span>
                 </div>
             </div>
             
             <!-- Actions Hub -->
             <div class="flex items-center space-x-1.5 sm:space-x-2.5" id="actionButtons">
                 <!-- Currency Switcher -->
-                <div class="flex items-center bg-pine-surface border border-white/10 rounded-lg p-0.5 text-[11px] font-mono">
-                    <button id="btnINR" onclick="setCurrency('INR')" class="px-2 sm:px-2.5 py-1 rounded bg-pine-accent text-white font-bold transition">₹</button>
+                <div class="flex items-center bg-slate900 border border-white/10 rounded-lg p-0.5 text-[11px] font-mono">
+                    <button id="btnINR" onclick="setCurrency('INR')" class="px-2 sm:px-2.5 py-1 rounded bg-brand-cyan text-slate950 font-bold transition">₹</button>
                     <button id="btnUSD" onclick="setCurrency('USD')" class="px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition">$</button>
                 </div>
 
                 <!-- Placement Pass Button -->
-                <button onclick="toggleBadgeModal(true)" class="inline-flex items-center gap-1 bg-pine-mint/15 hover:bg-pine-mint/25 text-pine-mint border border-pine-mint/30 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition">
+                <button onclick="toggleBadgeModal(true)" class="inline-flex items-center gap-1 bg-brand-cyan/10 hover:bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold uppercase transition">
                     <span class="hidden xs:inline">Pass</span>
                     <span class="font-mono text-xs">⚡</span>
                 </button>
@@ -159,12 +162,12 @@
 
                 <!-- Download Report Button -->
                 <button onclick="window.print()" class="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-gray-200 border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition" title="Print/Export Report">
-                    <svg class="w-3.5 h-3.5 text-pine-mint" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    <svg class="w-3.5 h-3.5 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     <span class="hidden md:inline">Report</span>
                 </button>
 
                 <!-- Studio CTA Button -->
-                <button onclick="scrollToWorkspace()" class="inline-flex items-center gap-1 sm:gap-1.5 bg-pine-accent hover:bg-[#257361] text-white font-bold px-3 sm:px-4 py-1.5 rounded-lg text-xs uppercase shadow-md shadow-pine-mint/10 transition">
+                <button onclick="scrollToWorkspace()" class="inline-flex items-center gap-1 sm:gap-1.5 bg-brand-cyan hover:bg-brand-cyanHover text-slate950 font-bold px-3 sm:px-4 py-1.5 rounded-lg text-xs uppercase shadow-md shadow-brand-cyan/25 transition">
                     <span>Studio</span>
                     <span class="font-black text-xs">↗</span>
                 </button>
@@ -172,23 +175,23 @@
         </div>
     </header>
 
-    <!-- Executive Hero Section with Editorial Modern Glass Architecture Background -->
+    <!-- Executive Hero Section with High-Resolution Engineering Workspace Imagery -->
     <section id="heroSection" class="relative border-b border-white/10 py-12 sm:py-20 overflow-hidden bg-cover bg-center" 
-             style="background-image: linear-gradient(to right, rgba(13, 27, 24, 0.95) 25%, rgba(19, 38, 34, 0.85) 100%), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80');">
+             style="background-image: linear-gradient(to right, rgba(10, 13, 20, 0.95) 28%, rgba(10, 13, 20, 0.78) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80');">
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
-                <!-- Floating Frosted Glass Card (Nordic Forest Theme) -->
-                <div class="lg:col-span-7 bg-[#132622]/90 backdrop-blur-xl border border-pine-mint/20 p-6 sm:p-10 rounded-3xl shadow-2xl">
+                <!-- Floating Glass Card (Midnight Slate Frost) -->
+                <div class="lg:col-span-7 bg-slate900/90 backdrop-blur-xl border border-white/15 p-6 sm:p-10 rounded-3xl shadow-2xl">
                     
-                    <div class="inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-pine-mint mb-3.5 px-3 py-1 rounded-full bg-pine-mint/10 border border-pine-mint/25">
-                        <span class="w-2 h-2 rounded-full bg-pine-mint animate-ping"></span>
+                    <div class="inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-brand-cyan mb-3.5 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/25">
+                        <span class="w-2 h-2 rounded-full bg-brand-cyan animate-ping"></span>
                         Autonomous Career Intelligence & What-If ROI
                     </div>
 
                     <h1 class="font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.18] mb-3">
-                        Welcome to <span class="text-pine-mint">CareerEngine</span>
+                        Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-indigo">CareerEngine</span>
                     </h1>
 
                     <p class="text-xs sm:text-base text-gray-300 font-normal leading-relaxed mb-6 max-w-xl">
@@ -196,31 +199,31 @@
                     </p>
 
                     <div class="flex flex-col xs:flex-row items-center gap-3">
-                        <button onclick="scrollToWorkspace()" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-pine-accent hover:bg-[#257361] text-white font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-pine-mint/20 border border-pine-mint/30">
+                        <button onclick="scrollToWorkspace()" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-brand-cyan hover:bg-brand-cyanHover text-slate950 font-bold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-brand-cyan/30">
                             <span>Launch Diagnostic Studio</span>
                             <span class="font-black text-sm">↗</span>
                         </button>
 
                         <button onclick="toggleResumeModal(true)" class="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 px-5 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition">
-                            <svg class="w-4 h-4 text-pine-mint" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <svg class="w-4 h-4 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             <span>Paste Resume / Bio</span>
                         </button>
                     </div>
 
                 </div>
 
-                <!-- Right Hero Metrics Column with Deep Pine Backdrop Cards -->
+                <!-- Right Hero Metrics Column -->
                 <div class="lg:col-span-5 hidden lg:block space-y-3.5">
-                    <div class="p-5 rounded-2xl bg-pine-surface/90 border border-pine-mint/20 backdrop-blur-md">
-                        <span class="text-[10px] font-mono uppercase tracking-wider text-pine-mint font-bold block mb-1">01. Algorithmic Core</span>
+                    <div class="p-5 rounded-2xl bg-slate900/80 border border-white/10 backdrop-blur-md hover:border-brand-cyan/30 transition">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-brand-cyan font-bold block mb-1">01. Algorithmic Core</span>
                         <p class="text-xs text-gray-300 leading-relaxed">Entropy-pruned Decision Tree Classifier evaluates binary competency vectors to establish class probabilities.</p>
                     </div>
-                    <div class="p-5 rounded-2xl bg-pine-surface/90 border border-pine-mint/20 backdrop-blur-md">
-                        <span class="text-[10px] font-mono uppercase tracking-wider text-pine-mint font-bold block mb-1">02. Dynamic Marginal ROI</span>
+                    <div class="p-5 rounded-2xl bg-slate900/80 border border-white/10 backdrop-blur-md hover:border-brand-emerald/30 transition">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-brand-emerald font-bold block mb-1">02. Dynamic Marginal ROI</span>
                         <p class="text-xs text-gray-300 leading-relaxed">Agentic delta simulation calculates real-time projected salary increments (+₹ LPA) per deficit addressed.</p>
                     </div>
-                    <div class="p-5 rounded-2xl bg-pine-surface/90 border border-pine-mint/20 backdrop-blur-md">
-                        <span class="text-[10px] font-mono uppercase tracking-wider text-pine-mint font-bold block mb-1">03. Placement Corridor Radar</span>
+                    <div class="p-5 rounded-2xl bg-slate900/80 border border-white/10 backdrop-blur-md hover:border-brand-amber/30 transition">
+                        <span class="text-[10px] font-mono uppercase tracking-wider text-brand-amber font-bold block mb-1">03. Placement Corridor Radar</span>
                         <p class="text-xs text-gray-300 leading-relaxed">Direct correlation with active tech corridors across Coimbatore TIDEL, Chennai OMR, and Bengaluru Whitefield.</p>
                     </div>
                 </div>
@@ -229,72 +232,72 @@
         </div>
     </section>
 
-    <!-- 4 Circular Specification Badges (Deep Pine Circles with Mint Icons) -->
-    <section id="specBadgesSection" class="border-b border-white/10 bg-pine-surface py-8 sm:py-10">
+    <!-- 4 Circular Specification Badges (Prism Contrast) -->
+    <section id="specBadgesSection" class="border-b border-white/10 bg-slate900/70 py-8 sm:py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
                 
                 <!-- Badge 1: Career Tracks -->
                 <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-pine-card border border-pine-mint/40 text-pine-mint flex items-center justify-center mb-3 shadow-lg shadow-pine-mint/10 transform hover:scale-105 transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate850 border border-brand-cyan/40 text-brand-cyan flex items-center justify-center mb-3 shadow-lg shadow-brand-cyan/10 transform hover:scale-105 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                     </div>
                     <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">12 Career Tracks</h3>
                     <p class="text-[11px] text-gray-400 mt-0.5">Benchmark Roles & Packages</p>
-                    <span class="text-[10px] font-mono text-pine-mint mt-1">₹6.5 - ₹28.0 LPA</span>
+                    <span class="text-[10px] font-mono text-brand-cyan font-bold mt-1">₹6.5 - ₹28.0 LPA</span>
                 </div>
 
                 <!-- Badge 2: Decision Tree ML -->
                 <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-pine-card border border-pine-mint/40 text-pine-mint flex items-center justify-center mb-3 shadow-lg shadow-pine-mint/10 transform hover:scale-105 transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate850 border border-brand-indigo/40 text-brand-indigo flex items-center justify-center mb-3 shadow-lg shadow-brand-indigo/10 transform hover:scale-105 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
                     </div>
                     <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">ML Decision Tree</h3>
                     <p class="text-[11px] text-gray-400 mt-0.5">Entropy Information Gain</p>
-                    <span class="text-[10px] font-mono text-pine-mint mt-1">Depth = 7 Model</span>
+                    <span class="text-[10px] font-mono text-brand-indigo font-bold mt-1">Depth = 7 Model</span>
                 </div>
 
                 <!-- Badge 3: Regional Radar -->
                 <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-pine-card border border-pine-mint/40 text-pine-mint flex items-center justify-center mb-3 shadow-lg shadow-pine-mint/10 transform hover:scale-105 transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate850 border border-brand-emerald/40 text-brand-emerald flex items-center justify-center mb-3 shadow-lg shadow-brand-emerald/10 transform hover:scale-105 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </div>
                     <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">Regional Job Radar</h3>
                     <p class="text-[11px] text-gray-400 mt-0.5">Verified Hub Openings</p>
-                    <span class="text-[10px] font-mono text-pine-mint mt-1">Coimbatore • Chennai • BLR</span>
+                    <span class="text-[10px] font-mono text-brand-emerald font-bold mt-1">Coimbatore • Chennai • BLR</span>
                 </div>
 
                 <!-- Badge 4: IBM SkillsBuild -->
                 <div class="flex flex-col items-center">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-pine-card border border-pine-mint/40 text-pine-mint flex items-center justify-center mb-3 shadow-lg shadow-pine-mint/10 transform hover:scale-105 transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate850 border border-brand-amber/40 text-brand-amber flex items-center justify-center mb-3 shadow-lg shadow-brand-amber/10 transform hover:scale-105 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"/></svg>
                     </div>
                     <h3 class="font-serif font-bold text-white text-xs sm:text-sm tracking-wide uppercase">IBM SkillsBuild</h3>
                     <p class="text-[11px] text-gray-400 mt-0.5">Accredited Pathways</p>
-                    <span class="text-[10px] font-mono text-pine-mint mt-1">Credly Badges Verified</span>
+                    <span class="text-[10px] font-mono text-brand-amber font-bold mt-1">Credly Badges Verified</span>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Career Specialization Cards (Rich Dark Pine Theme) -->
+    <!-- Career Specialization Cards (Clean Obsidian Cards + Clear Contrast) -->
     <section id="roleSelectionSection" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full">
         <div class="flex items-center justify-between mb-3.5">
             <h2 class="font-serif text-lg sm:text-xl font-bold text-white tracking-wide">Benchmark Career Tracks</h2>
-            <span class="text-[11px] font-mono text-pine-mint hidden xs:inline">Select track to re-evaluate</span>
+            <span class="text-[11px] font-mono text-brand-cyan hidden xs:inline">Select track to re-evaluate</span>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
             {% for role, data in taxonomy.items() %}
             <div onclick="selectRole('{{ role }}', this)" 
-                 class="role-card group cursor-pointer p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-pine-card border border-white/5 hover:bg-pine-cardHover flex flex-col justify-between {% if loop.first %}active{% endif %}">
+                 class="role-card group cursor-pointer p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate850 border border-white/5 hover:bg-slate800 flex flex-col justify-between {% if loop.first %}active{% endif %}">
                 <div>
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-[8px] sm:text-[9px] font-mono px-1.5 py-0.5 rounded bg-pine-base border border-pine-mint/20 text-pine-mint uppercase truncate max-w-[90px]">{{ data.demand }}</span>
-                        <span class="text-xs font-bold text-gray-400 group-hover:text-white">↗</span>
+                        <span class="text-[8px] sm:text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-brand-cyan uppercase truncate max-w-[95px]">{{ data.demand }}</span>
+                        <span class="text-xs font-bold text-gray-400 group-hover:text-brand-cyan">↗</span>
                     </div>
                     <h3 class="font-serif text-xs sm:text-sm font-bold text-white mb-1 leading-snug">{{ role }}</h3>
-                    <div class="text-[11px] sm:text-xs font-mono font-bold text-gray-300 salary-tag" 
+                    <div class="text-[11px] sm:text-xs font-mono font-bold text-brand-amber salary-tag" 
                          data-inr="{{ data.salary_inr }}" 
                          data-usd="{{ data.salary_usd }}">
                         {{ data.salary_inr }}
@@ -302,7 +305,7 @@
                 </div>
                 <div class="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-gray-400">
                     <span>{{ data.companies | length }} Hubs</span>
-                    <span class="text-pine-mint font-semibold">Active Hiring</span>
+                    <span class="text-brand-emerald font-semibold">Active Hiring</span>
                 </div>
             </div>
             {% endfor %}
@@ -317,14 +320,14 @@
             <p class="text-sm text-gray-600">Generated via Decision Tree Classifier & Regional Job Radar</p>
         </div>
 
-        <!-- Master Score Card Banner with High-Tech Workspace Background Image Overlay -->
-        <div class="bg-pine-card border border-pine-mint/25 p-5 sm:p-6 rounded-2xl sm:rounded-3xl relative overflow-hidden mb-6 shadow-xl bg-cover bg-center"
-             style="background-image: linear-gradient(to right, rgba(25, 51, 45, 0.96) 30%, rgba(25, 51, 45, 0.82) 100%), url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80');">
+        <!-- Master Score Card Banner with Modern Architectural Tech Workspace Backdrop -->
+        <div class="bg-slate850 border border-brand-cyan/30 p-5 sm:p-6 rounded-2xl sm:rounded-3xl relative overflow-hidden mb-6 shadow-2xl bg-cover bg-center"
+             style="background-image: linear-gradient(to right, rgba(15, 20, 32, 0.96) 28%, rgba(15, 20, 32, 0.82) 100%), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-5 relative z-10">
                 <div class="flex-1 text-center sm:text-left">
-                    <div class="inline-flex items-center gap-2 text-xs font-mono text-pine-mint uppercase tracking-wider mb-1">
+                    <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-cyan uppercase tracking-wider mb-1">
                         <span>Candidate Evaluation</span>
-                        <span class="px-2 py-0.5 rounded text-[10px] bg-pine-mint/20 text-pine-mint font-mono font-bold" id="readinessTier">Developing</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] bg-brand-cyan/20 text-brand-cyan font-mono font-bold" id="readinessTier">Developing</span>
                     </div>
                     <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mt-0.5" id="activeRoleTitle">AI / Machine Learning Engineer</h2>
                     <p class="text-xs text-gray-300 mt-1.5 leading-relaxed max-w-2xl" id="modelSummary">
@@ -332,7 +335,7 @@
                     </p>
                     <div class="mt-2.5 flex items-center justify-center sm:justify-start gap-2 text-xs font-mono">
                         <span class="text-gray-400">Benchmark Index:</span>
-                        <span class="text-white font-bold" id="displaySalary">₹8.5 - ₹18.0 LPA</span>
+                        <span class="text-brand-amber font-bold" id="displaySalary">₹8.5 - ₹18.0 LPA</span>
                     </div>
                 </div>
                 <div class="w-28 h-28 sm:w-32 sm:h-32 relative flex-shrink-0">
@@ -351,11 +354,11 @@
             <div class="lg:col-span-5 space-y-5" id="controlPanel">
                 
                 <!-- Competency Matrix -->
-                <div class="bg-pine-card border border-white/10 p-4 sm:p-5 rounded-2xl shadow-lg">
+                <div class="bg-slate850 border border-white/10 p-4 sm:p-5 rounded-2xl shadow-lg">
                     <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
                         <div class="flex items-center gap-2">
                             <span class="font-serif text-sm sm:text-base font-bold text-white">Competency Matrix</span>
-                            <button onclick="toggleResumeModal(true)" class="text-[10px] font-mono text-pine-mint bg-pine-mint/15 hover:bg-pine-mint/25 border border-pine-mint/30 px-2 py-0.5 rounded font-bold transition">
+                            <button onclick="toggleResumeModal(true)" class="text-[10px] font-mono text-brand-cyan bg-brand-cyan/15 hover:bg-brand-cyan/25 border border-brand-cyan/30 px-2 py-0.5 rounded font-bold transition">
                                 📋 Parse
                             </button>
                         </div>
@@ -366,7 +369,7 @@
                     <div class="relative mb-2.5">
                         <input type="text" id="skillSearch" placeholder="Filter skills (Python, RTOS, SQL)..." 
                                oninput="filterSkills()" 
-                               class="w-full bg-[#10221E] border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-pine-mint transition">
+                               class="w-full bg-slate900 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan transition font-mono">
                     </div>
 
                     <!-- Interactive Skill Pills -->
@@ -375,7 +378,7 @@
                         <button type="button" 
                                 data-skill="{{ skill }}"
                                 onclick="toggleSkill(this, '{{ skill }}')" 
-                                class="skill-pill text-[11px] sm:text-xs px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-gray-300 font-medium cursor-pointer hover:border-pine-mint/50 {% if skill in ['Python', 'Git / GitHub'] %}active{% endif %}">
+                                class="skill-pill text-[11px] sm:text-xs px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-gray-300 font-medium cursor-pointer hover:border-brand-cyan/50 {% if skill in ['Python', 'Git / GitHub'] %}active{% endif %}">
                             {{ skill }}
                         </button>
                         {% endfor %}
@@ -390,20 +393,20 @@
                         </button>
                     </div>
 
-                    <button onclick="runAnalysis()" class="w-full mt-2.5 py-3 px-4 rounded-lg bg-pine-accent hover:bg-[#257361] text-white font-bold text-xs tracking-wider uppercase shadow-md shadow-pine-mint/20 border border-pine-mint/30 flex items-center justify-center gap-2 transition">
+                    <button onclick="runAnalysis()" class="w-full mt-2.5 py-3 px-4 rounded-lg bg-brand-cyan hover:bg-brand-cyanHover text-slate950 font-bold text-xs tracking-wider uppercase shadow-md shadow-brand-cyan/25 flex items-center justify-center gap-2 transition">
                         <span>Recalculate Readiness Vector</span>
                         <span class="font-black text-sm">↗</span>
                     </button>
                 </div>
 
                 <!-- Recruiter STAR Bullets -->
-                <div class="bg-pine-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-slate850 border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <span class="font-serif text-sm font-bold text-white flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-pine-mint"></span>
+                            <span class="w-2 h-2 rounded-full bg-brand-emerald"></span>
                             Recruiter-Ready STAR Bullets
                         </span>
-                        <span class="text-[9px] font-mono text-pine-mint bg-pine-mint/10 px-2 py-0.5 rounded border border-pine-mint/20">Resume Ready</span>
+                        <span class="text-[9px] font-mono text-brand-emerald bg-brand-emerald/10 px-2 py-0.5 rounded border border-brand-emerald/20">Resume Ready</span>
                     </div>
                     <div id="starBulletsList" class="space-y-2 text-xs">
                         <div class="text-gray-500">Generating metric-driven resume bullets...</div>
@@ -411,10 +414,10 @@
                 </div>
 
                 <!-- Core Interview Topics -->
-                <div class="bg-pine-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-slate850 border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <span class="font-serif text-sm font-bold text-white flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-pine-mint"></span>
+                            <span class="w-2 h-2 rounded-full bg-brand-cyan"></span>
                             Core Technical Interview Topics
                         </span>
                         <span class="text-[9px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded">High Yield</span>
@@ -424,17 +427,17 @@
                     </div>
                 </div>
 
-                <!-- Verified Project Seal & Watermark with Architectural Glass Skyline Image -->
-                <div class="p-4 sm:p-5 rounded-2xl border border-pine-mint/20 bg-cover bg-center relative overflow-hidden shadow-lg"
-                     style="background-image: linear-gradient(to bottom, rgba(19, 38, 34, 0.95), rgba(13, 27, 24, 0.96)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80');">
+                <!-- Verified Project Seal & Watermark with Architectural Skyline Background -->
+                <div class="p-4 sm:p-5 rounded-2xl border border-white/10 bg-cover bg-center relative overflow-hidden shadow-lg"
+                     style="background-image: linear-gradient(to bottom, rgba(15, 20, 32, 0.95), rgba(10, 13, 20, 0.97)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80');">
                     <div class="flex items-center justify-between pb-2.5 border-b border-white/10 mb-2.5">
                         <div class="flex items-center gap-2">
-                            <div class="w-5 h-5 rounded bg-pine-mint/20 border border-pine-mint/40 flex items-center justify-center text-pine-mint font-bold text-xs">
+                            <div class="w-5 h-5 rounded bg-brand-cyan/20 border border-brand-cyan/40 flex items-center justify-center text-brand-cyan font-bold text-xs">
                                 ✓
                             </div>
                             <span class="font-serif font-bold text-white text-xs">Verified Capstone Project</span>
                         </div>
-                        <span class="text-[9px] font-mono text-pine-mint bg-pine-mint/10 px-2 py-0.5 rounded border border-pine-mint/20">AICTE 2026</span>
+                        <span class="text-[9px] font-mono text-brand-emerald bg-brand-emerald/10 px-2 py-0.5 rounded border border-brand-emerald/20">AICTE 2026</span>
                     </div>
 
                     <div class="space-y-1.5 text-xs">
@@ -444,7 +447,7 @@
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-gray-400">Track:</span>
-                            <span class="text-pine-mint font-mono text-[11px] font-bold">IBM SkillsBuild Applied AI</span>
+                            <span class="text-brand-cyan font-mono text-[11px] font-bold">IBM SkillsBuild Applied AI</span>
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-gray-400">Target SDG:</span>
@@ -458,10 +461,10 @@
                 </div>
 
                 <!-- Telemetry Console -->
-                <div class="bg-pine-card border border-white/10 p-4 rounded-2xl" id="logsBox">
+                <div class="bg-slate850 border border-white/10 p-4 rounded-2xl" id="logsBox">
                     <div class="text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-2 flex items-center justify-between">
                         <span>Agent Telemetry</span>
-                        <span class="text-pine-mint text-[9px] font-mono">Live</span>
+                        <span class="text-brand-emerald text-[9px] font-mono">Live</span>
                     </div>
                     <div id="logs" class="space-y-1.5 font-mono text-[10px] text-gray-400 max-h-24 overflow-y-auto custom-scroll">
                         <div class="text-gray-500">[System]: Engine ready.</div>
@@ -477,10 +480,10 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     
                     <!-- Missing Deficits with Hover ROI Simulator -->
-                    <div class="bg-pine-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                    <div class="bg-slate850 border border-white/10 p-4 sm:p-5 rounded-2xl">
                         <div class="flex items-center justify-between mb-1">
                             <span class="font-serif text-sm font-bold text-rose-300">Missing Deficits</span>
-                            <span id="gapCount" class="text-[10px] font-mono text-rose-300 font-bold">0 Gaps</span>
+                            <span id="gapCount" class="text-[10px] font-mono text-brand-rose font-bold">0 Gaps</span>
                         </div>
                         <p class="text-[11px] text-gray-400 mb-2.5">Click tag to simulate ROI bump:</p>
                         <div id="missingList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
@@ -489,10 +492,10 @@
                     </div>
 
                     <!-- Verified Competencies -->
-                    <div class="bg-pine-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                    <div class="bg-slate850 border border-white/10 p-4 sm:p-5 rounded-2xl">
                         <div class="flex items-center justify-between mb-1">
-                            <span class="font-serif text-sm font-bold text-pine-mint">Verified Competencies</span>
-                            <span id="matchCount" class="text-[10px] font-mono text-pine-mint font-bold">0 Matches</span>
+                            <span class="font-serif text-sm font-bold text-brand-emerald">Verified Competencies</span>
+                            <span id="matchCount" class="text-[10px] font-mono text-brand-emerald font-bold">0 Matches</span>
                         </div>
                         <p class="text-[11px] text-gray-400 mb-2.5">Active skills factored in vector:</p>
                         <div id="matchedList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
@@ -502,11 +505,11 @@
                 </div>
 
                 <!-- Regional Placement Matcher with City Search -->
-                <div class="bg-pine-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-slate850 border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
                         <div>
                             <h3 class="font-serif text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pine-mint animate-pulse"></span>
+                                <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
                                 Regional Company Placement Matchmaker
                             </h3>
                             <p class="text-xs text-gray-400 mt-0.5">Filter tech hubs & vacancies by city:</p>
@@ -516,8 +519,8 @@
                         <div class="flex items-center gap-1.5">
                             <input type="text" id="citySearchInput" placeholder="Enter city (e.g. Coimbatore)..." 
                                    onkeydown="if(event.key === 'Enter') runCitySearch()"
-                                   class="bg-[#10221E] border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-pine-mint w-36 sm:w-44 font-mono">
-                            <button onclick="runCitySearch()" class="px-3 py-1.5 rounded-lg bg-pine-accent hover:bg-[#257361] text-white font-bold text-xs font-mono transition border border-pine-mint/30">
+                                   class="bg-slate900 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan w-36 sm:w-44 font-mono">
+                            <button onclick="runCitySearch()" class="px-3 py-1.5 rounded-lg bg-brand-cyan hover:bg-brand-cyanHover text-slate950 font-bold text-xs font-mono transition">
                                 Find
                             </button>
                             <button onclick="resetCityFilter()" class="px-2 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 text-xs font-mono transition">
@@ -529,11 +532,11 @@
                     <!-- Quick City Pills -->
                     <div class="flex items-center gap-1.5 mb-2.5 text-[10px] sm:text-[11px] font-mono overflow-x-auto pb-1 custom-scroll">
                         <span class="text-gray-500">Quick:</span>
-                        <button onclick="setCityFilter('Coimbatore')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-pine-mint/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Coimbatore</button>
-                        <button onclick="setCityFilter('Chennai')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-pine-mint/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Chennai</button>
-                        <button onclick="setCityFilter('Bengaluru')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-pine-mint/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Bengaluru</button>
-                        <button onclick="setCityFilter('Hyderabad')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-pine-mint/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Hyderabad</button>
-                        <button onclick="setCityFilter('Pune')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-pine-mint/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Pune</button>
+                        <button onclick="setCityFilter('Coimbatore')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-cyan/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Coimbatore</button>
+                        <button onclick="setCityFilter('Chennai')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-cyan/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Chennai</button>
+                        <button onclick="setCityFilter('Bengaluru')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-cyan/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Bengaluru</button>
+                        <button onclick="setCityFilter('Hyderabad')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-cyan/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Hyderabad</button>
+                        <button onclick="setCityFilter('Pune')" class="px-2 py-0.5 rounded bg-white/5 hover:bg-brand-cyan/20 text-gray-300 hover:text-white border border-white/5 transition flex-shrink-0">Pune</button>
                     </div>
 
                     <div id="companyContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-2.5">
@@ -542,13 +545,13 @@
                 </div>
 
                 <!-- Recommended Upskilling Curriculum Pathway -->
-                <div class="bg-pine-card border border-white/10 p-4 sm:p-5 rounded-2xl">
+                <div class="bg-slate850 border border-white/10 p-4 sm:p-5 rounded-2xl">
                     <div class="flex items-center justify-between mb-2.5">
                         <div>
                             <h3 class="font-serif text-sm sm:text-base font-bold text-white">Curated IBM SkillsBuild Pathway</h3>
                             <p class="text-xs text-gray-400 mt-0.5">Click any course below to open and start on IBM SkillsBuild:</p>
                         </div>
-                        <span class="text-[10px] font-mono text-pine-mint bg-pine-mint/15 px-2 py-0.5 rounded font-bold border border-pine-mint/30">Direct Link</span>
+                        <span class="text-[10px] font-mono text-brand-cyan bg-brand-cyan/15 px-2 py-0.5 rounded font-bold border border-brand-cyan/30">Direct Link</span>
                     </div>
                     <div id="roadmapList" class="space-y-2.5">
                         <div class="text-xs text-gray-500">Loading modules...</div>
@@ -561,7 +564,7 @@
 
     <!-- MODAL 1: Resume Text Ingestion -->
     <div id="resumeModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="modal-content bg-pine-surface border border-pine-mint/30 rounded-2xl max-w-xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
+        <div class="modal-content bg-slate900 border border-white/15 rounded-2xl max-w-xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
             <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
                 <div>
                     <h3 class="font-serif text-base sm:text-lg font-bold text-white">Resume & Bio Quick Ingestion</h3>
@@ -571,7 +574,7 @@
             </div>
 
             <textarea id="resumeInput" rows="5" placeholder="Paste your resume text or project summary here... (e.g., Developed deep learning neural networks in Python using PyTorch and Docker for real-time edge devices)" 
-                      class="w-full bg-[#10221E] border border-white/10 rounded-xl p-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-pine-mint custom-scroll font-mono"></textarea>
+                      class="w-full bg-slate950 border border-white/10 rounded-xl p-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan custom-scroll font-mono"></textarea>
 
             <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-3.5">
                 <button onclick="loadSampleResume()" class="text-xs font-mono text-gray-400 hover:text-white transition">
@@ -581,7 +584,7 @@
                     <button onclick="toggleResumeModal(false)" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 text-xs font-semibold transition">
                         Cancel
                     </button>
-                    <button onclick="parsePastedResume()" class="px-4 py-1.5 rounded-lg bg-pine-accent hover:bg-[#257361] text-white font-bold text-xs uppercase tracking-wide transition shadow-md shadow-pine-mint/20 border border-pine-mint/30">
+                    <button onclick="parsePastedResume()" class="px-4 py-1.5 rounded-lg bg-brand-cyan hover:bg-brand-cyanHover text-slate950 font-bold text-xs uppercase tracking-wide transition shadow-md shadow-brand-cyan/20">
                         Extract Skills ↗
                     </button>
                 </div>
@@ -592,11 +595,11 @@
     <!-- MODAL 2: Placement Readiness Boarding Pass -->
     <div id="badgeModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
         <div class="modal-content bg-transparent max-w-lg w-full">
-            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#19332D] to-[#0D1B18] border border-pine-mint/30 relative overflow-hidden shadow-2xl">
+            <div class="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate900 to-slate950 border border-white/15 relative overflow-hidden shadow-2xl">
                 
                 <div class="flex items-center justify-between pb-3.5 border-b border-white/10 mb-4">
                     <div class="flex items-center gap-2">
-                        <span class="w-7 h-7 rounded-lg bg-pine-accent text-white flex items-center justify-center font-black text-xs border border-pine-mint/40">
+                        <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-brand-cyan to-brand-indigo text-slate950 flex items-center justify-center font-black text-xs">
                             CE
                         </span>
                         <div>
@@ -615,8 +618,8 @@
                     </div>
                     <div class="p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
                         <span class="text-gray-400 text-[9px] block uppercase">Readiness Tier</span>
-                        <span id="badgeTierText" class="text-pine-mint font-bold text-xs sm:text-sm block mt-0.5">Placement Ready</span>
-                        <span id="badgeScoreText" class="text-[9px] text-pine-mint font-bold">Fit Score: 85%</span>
+                        <span id="badgeTierText" class="text-brand-emerald font-bold text-xs sm:text-sm block mt-0.5">Placement Ready</span>
+                        <span id="badgeScoreText" class="text-[9px] text-brand-cyan font-bold">Fit Score: 85%</span>
                     </div>
                 </div>
 
@@ -635,9 +638,9 @@
                 <div class="pt-3 border-t border-dashed border-white/15 flex items-center justify-between">
                     <div>
                         <div class="font-mono text-[8px] tracking-widest text-gray-500 uppercase">Authenticated by Multi-Agent Engine</div>
-                        <div class="font-mono text-[10px] tracking-widest text-pine-mint mt-0.5">||||| |||| || |||||| ||||| |||</div>
+                        <div class="font-mono text-[10px] tracking-widest text-brand-cyan mt-0.5">||||| |||| || |||||| ||||| |||</div>
                     </div>
-                    <button onclick="window.print()" class="px-3.5 py-1.5 rounded-xl bg-pine-accent hover:bg-[#257361] text-white font-bold text-xs uppercase tracking-wider transition shadow-md shadow-pine-mint/20 border border-pine-mint/30">
+                    <button onclick="window.print()" class="px-3.5 py-1.5 rounded-xl bg-brand-cyan hover:bg-brand-cyanHover text-slate950 font-bold text-xs uppercase tracking-wider transition shadow-md shadow-brand-cyan/25">
                         Print Pass
                     </button>
                 </div>
@@ -648,7 +651,7 @@
 
     <!-- MODAL 3: How It Works & Architecture -->
     <div id="howItWorksModal" class="modal-base modal-hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="modal-content bg-pine-surface border border-pine-mint/30 rounded-2xl max-w-2xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
+        <div class="modal-content bg-slate900 border border-white/15 rounded-2xl max-w-2xl w-full p-5 max-h-[85vh] overflow-y-auto custom-scroll shadow-2xl">
             <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
                 <div>
                     <h3 class="text-base sm:text-lg font-serif font-bold text-white">How CareerEngine Works</h3>
@@ -659,7 +662,7 @@
             
             <div class="space-y-3 text-xs text-gray-300">
                 <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
-                    <h4 class="font-serif font-bold text-pine-mint text-xs sm:text-sm mb-1">1. Skill Ingestion & Vectorization</h4>
+                    <h4 class="font-serif font-bold text-brand-cyan text-xs sm:text-sm mb-1">1. Skill Ingestion & Vectorization</h4>
                     <p class="leading-relaxed">When you select technologies or paste your resume, Agent 1 normalizes them into a multi-dimensional binary feature vector representing your capabilities.</p>
                 </div>
                 <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
@@ -667,7 +670,7 @@
                     <p class="leading-relaxed">A Scikit-Learn Decision Tree evaluates your vector against industrial benchmark standards, computing instant What-If career return projections for each missing competency.</p>
                 </div>
                 <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
-                    <h4 class="font-serif font-bold text-pine-mint text-xs sm:text-sm mb-1">3. Regional Vacancy & Placement Pass</h4>
+                    <h4 class="font-serif font-bold text-brand-emerald text-xs sm:text-sm mb-1">3. Regional Vacancy & Placement Pass</h4>
                     <p class="leading-relaxed">Agent 3 and 4 synthesize metric-driven STAR bullets for placement resumes, link accredited IBM SkillsBuild coursework, and filter active tech centers in your target city.</p>
                 </div>
             </div>
@@ -697,10 +700,10 @@
             const btnUSD = document.getElementById('btnUSD');
 
             if (curr === 'INR') {
-                btnINR.className = "px-2 sm:px-2.5 py-1 rounded bg-pine-accent text-white font-bold transition";
+                btnINR.className = "px-2 sm:px-2.5 py-1 rounded bg-brand-cyan text-slate950 font-bold transition";
                 btnUSD.className = "px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition";
             } else {
-                btnUSD.className = "px-2 sm:px-2.5 py-1 rounded bg-pine-accent text-white font-bold transition";
+                btnUSD.className = "px-2 sm:px-2.5 py-1 rounded bg-brand-cyan text-slate950 font-bold transition";
                 btnINR.className = "px-2 sm:px-2.5 py-1 rounded text-gray-400 hover:text-white transition";
             }
 
@@ -855,7 +858,7 @@
                 data: {
                     datasets: [{
                         data: [score, 100 - score],
-                        backgroundColor: ['#34D399', '#142924'],
+                        backgroundColor: ['#06B6D4', '#1E293B'],
                         borderWidth: 0,
                     }]
                 },
@@ -906,14 +909,14 @@
                 if (data.match_percentage >= 75) {
                     tierText = "Placement Ready";
                     tierEl.textContent = tierText;
-                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-pine-mint/20 text-pine-mint font-mono font-bold transition";
+                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-brand-emerald/20 text-brand-emerald font-mono font-bold transition";
                 } else if (data.match_percentage >= 40) {
                     tierText = "Mid-Stage Candidate";
                     tierEl.textContent = tierText;
-                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-emerald-600/20 text-emerald-300 font-mono font-bold transition";
+                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-brand-amber/20 text-brand-amber font-mono font-bold transition";
                 } else {
                     tierEl.textContent = tierText;
-                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-pine-mint/20 text-pine-mint font-mono font-bold transition";
+                    tierEl.className = "px-2 py-0.5 rounded text-[10px] bg-brand-cyan/20 text-brand-cyan font-mono font-bold transition";
                 }
 
                 // Update Boarding Pass Data
@@ -931,21 +934,21 @@
                     gapContainer.innerHTML = data.missing_skills.map((s, idx) => {
                         const roi = data.skill_roi[s] || { fit_gain: 15, salary_bump: "+₹2.4 LPA", openings_unlocked: 4 };
                         return `
-                        <div onclick="simulateSkillAcquisition('${s}')" class="group cursor-pointer p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-200 transition hover:bg-rose-500/20 hover:border-pine-mint/50" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
+                        <div onclick="simulateSkillAcquisition('${s}')" class="group cursor-pointer p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-200 transition hover:bg-rose-500/20 hover:border-brand-rose/50" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
                             <div class="flex items-center justify-between">
-                                <span class="font-medium text-[11px] sm:text-xs">❌ ${s}</span>
-                                <span class="text-[9px] font-mono text-pine-mint bg-pine-mint/15 px-1.5 py-0.5 rounded border border-pine-mint/30 font-bold">Simulate ↗</span>
+                                <span class="font-medium text-[11px] sm:text-xs text-rose-300">❌ ${s}</span>
+                                <span class="text-[9px] font-mono text-brand-rose bg-rose-500/20 px-1.5 py-0.5 rounded border border-rose-500/30 font-bold">Simulate ↗</span>
                             </div>
                             <div class="mt-1.5 pt-1.5 border-t border-rose-500/20 flex items-center justify-between text-[10px] font-mono text-gray-300">
-                                <span class="text-pine-mint font-bold">+${roi.fit_gain}% Fit</span>
+                                <span class="text-brand-emerald font-bold">+${roi.fit_gain}% Fit</span>
                                 <span>+${roi.openings_unlocked} Hubs</span>
-                                <span class="text-emerald-300 font-bold">${roi.salary_bump}</span>
+                                <span class="text-brand-amber font-bold">${roi.salary_bump}</span>
                             </div>
                         </div>
                         `;
                     }).join('');
                 } else {
-                    gapContainer.innerHTML = `<div class="p-2.5 rounded-lg bg-pine-mint/10 border border-pine-mint/20 text-xs text-pine-mint fade-in-element">🎉 Complete match! No critical skill gaps.</div>`;
+                    gapContainer.innerHTML = `<div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-brand-emerald fade-in-element">🎉 Complete match! No critical skill gaps.</div>`;
                 }
 
                 // 4. Verified Competencies
@@ -954,8 +957,8 @@
                 if (data.acquired_skills.length > 0) {
                     matchContainer.innerHTML = data.acquired_skills.map((s, idx) => `
                         <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-gray-300 flex items-center justify-between transition hover:bg-white/[0.06]" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
-                            <span class="text-[11px] sm:text-xs">${s}</span>
-                            <span class="text-pine-mint font-mono text-[9px]">✓ Verified</span>
+                            <span class="text-[11px] sm:text-xs text-white">${s}</span>
+                            <span class="text-brand-emerald font-mono text-[9px] font-bold">✓ Verified</span>
                         </div>
                     `).join('');
                 } else {
@@ -966,10 +969,10 @@
                 const starContainer = document.getElementById('starBulletsList');
                 if (data.star_bullets && data.star_bullets.length > 0) {
                     starContainer.innerHTML = data.star_bullets.map((b, idx) => `
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-pine-mint/40 transition group">
+                        <div class="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-cyan/40 transition group">
                             <div class="flex items-start justify-between gap-2">
                                 <span class="text-[11px] leading-relaxed text-gray-300 font-sans">${b}</span>
-                                <button onclick="copyToClipboard('${b.replace(/'/g, "\\'")}')" class="text-[10px] font-mono text-gray-400 group-hover:text-pine-mint p-1 rounded hover:bg-white/5 transition flex-shrink-0" title="Copy bullet">
+                                <button onclick="copyToClipboard('${b.replace(/'/g, "\\'")}')" class="text-[10px] font-mono text-gray-400 group-hover:text-brand-cyan p-1 rounded hover:bg-white/5 transition flex-shrink-0" title="Copy bullet">
                                     Copy 📋
                                 </button>
                             </div>
@@ -981,13 +984,13 @@
                 const compContainer = document.getElementById('companyContainer');
                 if (data.companies.length > 0) {
                     compContainer.innerHTML = data.companies.map((c, idx) => `
-                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-pine-mint/40 transition flex items-center justify-between" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.04}s forwards; opacity: 0;">
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-cyan/40 transition flex items-center justify-between" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.04}s forwards; opacity: 0;">
                             <div>
                                 <div class="text-xs font-bold text-white">${c.name}</div>
                                 <div class="text-[10px] sm:text-[11px] text-gray-400 mt-0.5 font-mono">📍 ${c.city} (${c.hub}) • ${c.type}</div>
                             </div>
                             <div class="text-right flex-shrink-0 ml-2">
-                                <span class="text-[9px] sm:text-[10px] font-mono text-pine-mint bg-pine-mint/10 px-2 py-0.5 rounded font-bold">${c.openings} Openings</span>
+                                <span class="text-[9px] sm:text-[10px] font-mono text-brand-emerald bg-brand-emerald/10 px-2 py-0.5 rounded font-bold">${c.openings} Openings</span>
                             </div>
                         </div>
                     `).join('');
@@ -999,20 +1002,20 @@
                 const roadmapContainer = document.getElementById('roadmapList');
                 roadmapContainer.innerHTML = data.recommended_courses.map((c, i) => `
                     <a href="${c.url}" target="_blank" rel="noopener noreferrer" 
-                       class="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between hover:border-pine-mint/60 hover:bg-white/[0.04] transition group cursor-pointer block" style="animation: subtleFadeUp 0.3s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s forwards; opacity: 0;">
+                       class="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between hover:border-brand-cyan/60 hover:bg-white/[0.04] transition group cursor-pointer block" style="animation: subtleFadeUp 0.3s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s forwards; opacity: 0;">
                         <div class="flex items-center gap-3">
-                            <span class="w-6 h-6 rounded-full bg-pine-surface border border-pine-mint/30 group-hover:bg-pine-accent text-pine-mint group-hover:text-white text-xs font-mono font-bold flex items-center justify-center transition-colors">0${i+1}</span>
+                            <span class="w-6 h-6 rounded-full bg-slate900 border border-brand-cyan/30 group-hover:bg-brand-cyan text-brand-cyan group-hover:text-slate950 text-xs font-mono font-bold flex items-center justify-center transition-colors">0${i+1}</span>
                             <div>
-                                <div class="text-xs font-bold text-white group-hover:text-pine-mint transition-colors flex items-center gap-1">
+                                <div class="text-xs font-bold text-white group-hover:text-brand-cyan transition-colors flex items-center gap-1">
                                     <span>${c.title}</span>
-                                    <span class="text-gray-400 group-hover:text-pine-mint text-xs font-bold">↗</span>
+                                    <span class="text-gray-400 group-hover:text-brand-cyan text-xs font-bold">↗</span>
                                 </div>
                                 <div class="text-[10px] text-gray-400 font-mono mt-0.5">🏅 ${c.badge}</div>
                             </div>
                         </div>
                         <div class="flex items-center gap-2 flex-shrink-0 ml-2">
                             <span class="text-[10px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded">${c.duration}</span>
-                            <span class="text-[9px] font-mono text-pine-mint border border-pine-mint/40 px-2 py-0.5 rounded uppercase hidden xs:inline-block group-hover:bg-pine-accent group-hover:text-white font-bold transition">Start ↗</span>
+                            <span class="text-[9px] font-mono text-brand-cyan border border-brand-cyan/40 px-2 py-0.5 rounded uppercase hidden xs:inline-block group-hover:bg-brand-cyan group-hover:text-slate950 font-bold transition">Start ↗</span>
                         </div>
                     </a>
                 `).join('');
@@ -1022,7 +1025,7 @@
                 if (data.interview_topics && data.interview_topics.length > 0) {
                     interviewContainer.innerHTML = data.interview_topics.map((q, idx) => `
                         <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5 flex items-start gap-2 text-gray-300" style="animation: subtleFadeUp 0.25s cubic-bezier(0.16,1,0.3,1) ${idx * 0.03}s forwards; opacity: 0;">
-                            <span class="text-pine-mint font-mono font-bold text-xs">Q${idx+1}:</span>
+                            <span class="text-brand-cyan font-mono font-bold text-xs">Q${idx+1}:</span>
                             <span class="text-[11px] leading-relaxed text-gray-300">${q}</span>
                         </div>
                     `).join('');
@@ -1033,7 +1036,7 @@
                 // 9. Logs
                 const logContainer = document.getElementById('logs');
                 logContainer.innerHTML = data.logs.map(l => `
-                    <div class="border-l-2 border-pine-mint pl-2 py-0.5 fade-in-element">
+                    <div class="border-l-2 border-brand-cyan pl-2 py-0.5 fade-in-element">
                         <span class="text-gray-200 font-semibold">${l.agent}</span><br>
                         <span class="text-gray-400 text-[9px]">${l.detail}</span>
                     </div>
